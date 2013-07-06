@@ -123,6 +123,7 @@
                     source : this.options.source,
                     entries : this.options.entries
                 };
+
                 // add html to container
                 this.$el.empty();
                 this.$el.html(Mustache.render(this.template, data));

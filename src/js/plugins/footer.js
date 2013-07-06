@@ -16,22 +16,25 @@ var Footer = {
         Footer.destroy();
         log.info("PLUGIN - FOOTER - Enable: " + source);
 
-
         if (source.indexOf('http://') == 0 || source.indexOf('//') == 0) {
-              // Temporarily disabled RSS feed in footer
-/*            $.getJSON("//www.google.com/reader/public/javascript/feed/" + source + "?callback=?", function(data) {
-                var items = data.items.slice(0,5);
+            $.getScript("//www.google.com/jsapi", function(){
+                google.load("feeds", "1", {'callback':function(){
+                    var feed = new google.feeds.Feed(source);
+                    feed.load(function(result) {
+                        if (!result.error) {
+                            Footer.element = $('<div id="message" class="scroll-footer"><div class="fade left"></div><div class="fade right"></div><marquee class="text-color"></marquee>');
+                            // create content
+                            for(var i in result.feed.entries) {
+                                Footer.element.find('marquee').append('<span>' + result.feed.entries[i]['title'] + '</span>');
+                            }
+                            $("footer").append(Footer.element);
+                        }else{
+                            //what if the feed wasn't retrieved? Nothing?
+                        }
+                    });
 
-                // create marquee element
-                Footer.element = $('<div id="message" class="scroll-footer"><div class="fade left"></div><div class="fade right"></div><marquee class="text-color"></marquee>');
-
-                // create content
-                for(var i in items) {
-                    Footer.element.find('marquee').append('<span>' + items[i]['title'] + '</span>');
-                }
-
-                $("footer").append(Footer.element);
-            });*/
+                }});
+            });
         } else {
             // create marquee element
             Footer.element = $('<div id="message" class="text-color">' + source + '</div>');
