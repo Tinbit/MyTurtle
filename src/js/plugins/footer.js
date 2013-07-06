@@ -18,7 +18,8 @@ var Footer = {
 
 
         if (source.indexOf('http://') == 0 || source.indexOf('//') == 0) {
-            $.getJSON("//www.google.com/reader/public/javascript/feed/" + source + "?callback=?", function(data) {
+              // Temporarily disabled RSS feed in footer
+/*            $.getJSON("//www.google.com/reader/public/javascript/feed/" + source + "?callback=?", function(data) {
                 var items = data.items.slice(0,5);
 
                 // create marquee element
@@ -30,7 +31,7 @@ var Footer = {
                 }
 
                 $("footer").append(Footer.element);
-            });
+            });*/
         } else {
             // create marquee element
             Footer.element = $('<div id="message" class="text-color">' + source + '</div>');
