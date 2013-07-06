@@ -2,6 +2,7 @@
  * FlatTurtle
  * @author: Jens Segers (jens@irail.be)
  * @author: Michiel Vancoillie (michiel@irail.be)
+ * @author: Pieter Colpaert (pieter@flatturtle.com)
  * @license: AGPLv3
  */
 
@@ -14,23 +15,26 @@
             // prevents loss of "this" inside methods
             _.bindAll(this, "refresh");
 
+            //load google feed API
+            $.getScript("//www.google.com/jsapi", function(){
+                google.load("feeds", "1", {'callback':function(){
+                    // default error value
+                    options.error = false;
+                    // default limit
+                    if (!options.limit)
+                        options.limit = 5;
+
+                    // automatic collection refresh each 4 minutes, this will
+                    // trigger the reset event
+                    setTimeout(function(){
+                        refreshInterval = setInterval(self.refresh, 240000);
+                    }, Math.round(Math.random()*5000));
+                    self.refresh();
+                }});
+            });
             // fetch data when born
-            this.on("born", this.refresh);
             this.on("refresh", this.refresh);
             this.on("reconfigure", this.refresh);
-
-            // default error value
-            options.error = false;
-
-            // default limit
-            if (!options.limit)
-                options.limit = 5;
-
-            // automatic collection refresh each 4 minutes, this will
-            // trigger the reset event
-            setTimeout(function(){
-                refreshInterval = setInterval(self.refresh, 240000);
-            }, Math.round(Math.random()*5000));
         },
         refresh : function() {
             log.debug("TURTLE - RSS - Refresh");
@@ -39,8 +43,14 @@
                 return;
 
             var self = this;
-            self.fetch({
-                error : function(jqXHR, e) {
+
+            var feed = new google.feeds.Feed(this.options.feed);
+            feed.load(function(result) {
+                if (!result.error) {
+                    self.json = result.feed;
+                    self.parse();
+                    self.trigger("reset");
+                }else{
                     log.error("TURTLE - RSS - Can't fetch results: ", e.statusText);
                     // will allow the view to detect errors
                     self.options.error = true;
@@ -51,24 +61,18 @@
                 }
             });
         },
-        url : function() {
-            log.debug("TURTLE - RSS - Create URL");
-            // remote source url
-            return "//www.google.com/reader/public/javascript/feed/" + encodeURIComponent(this.options.feed) + "?callback=?";
-        },
         parse : function(json) {
             log.info("TURTLE - RSS - Parse results");
 
             var entries = new Object();
-
+            var json = this.json;
             try{
                 this.options.source = json.title;
-                var items = json.items.slice(0, this.options.limit - 1);
+                var items = json.entries.slice(0, this.options.limit - 1);
 
                 for (var i in items) {
-                    var time = new Date(items[i].published * 1000);
+                    var time = new Date(items[i].publishedDate);
                     items[i].time = time.format("{H}:{M}");
-
                     // Determine type
                     if(items[i].enclosure && items[i].enclosure.href != null && !items[i].summary){
                         entries.type_images = true;
@@ -84,7 +88,7 @@
             }catch(e){
                 log.warn("TURTLE - RSS - Can't parse results");
             }
-
+            this.options.entries = entries;
             // return only limited number if items
             return entries;
         }
@@ -111,11 +115,13 @@
         render : function() {
             log.debug("TURTLE - RSS - Refresh view");
             // only render when template file is loaded
-            if (this.template) {
+            
+            if (this.template && typeof this.options.entries !== "undefined") {
+
                 var data = {
                     error : this.options.error,
                     source : this.options.source,
-                    entries : this.collection.toJSON()
+                    entries : this.options.entries
                 };
 
                 // add html to container
