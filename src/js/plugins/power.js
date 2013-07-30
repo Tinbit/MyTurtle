@@ -16,6 +16,8 @@ var Power = {
     },
 
     disable : function() {
+	if(typeof $("#playerobject") !== "undefined")
+              $("#playerobject").get(0).stop();
         log.info("PLUGIN - POWER - Disable");
         // MyTurtleSleep page will turn it off after 3s
         //document.location.href = '../sleep';
