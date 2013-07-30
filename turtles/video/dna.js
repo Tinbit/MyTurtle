@@ -23,6 +23,7 @@
                 self.render();
             });
             this.bind("shown", this.shown);
+            this.bind("hide", this.bind);
         },
         render : function(){
             // change turtle padding
@@ -36,6 +37,9 @@
             }else{
                 $("#videotag").get(0).play();
             }
+        },
+        hide : function(){
+            $("#playerobject").stop();
         }
     });
 
