@@ -23,3 +23,7 @@ Thumbs.db
 .settings
 .buildpath
 .project
+### /Users/nik/.gitignore-boilerplates/Global/PhPStorm.gitignore
+
+.idea/
+
