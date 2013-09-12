@@ -1,0 +1,20 @@
+{{ #data }}
+    <div class="pricelist">
+        <h1>{{ title }}</h1>
+        {{ #categories }}
+        <div class="category">
+            <h2 class="bg-color-light">{{ name }}</h2>
+            <div class="entries">
+                <ul>
+                    {{ #entries }}
+                        <li>
+                            <h3>{{ name }}<span class="pull-right">&euro;{{ price }}</span></h3>
+                            <p>{{ description }}</p>
+                        </li>
+                    {{ /entries }}
+                </ul>
+            </div>
+        </div>
+        {{ /categories }}
+    </div>
+{{ /data }}

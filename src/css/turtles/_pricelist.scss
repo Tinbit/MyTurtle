@@ -1,0 +1,37 @@
+.pricelist{
+    padding:0 3px;
+
+    h1{
+        font-size: 1.20em;
+    }
+
+    .category{
+
+        margin-top:10px;
+
+        h2{
+            font-size: 1em;
+            padding: 3px 3px;
+        }
+
+        .entries{
+            margin-left: 10px;
+            ul li{
+                float: none;
+
+                .pull-right{
+                    float:right;
+                }
+
+                h3{
+                    font-size: 0.80em;
+                }
+
+                p{
+                    font-size: 0.70em;
+                }
+            }
+        }
+    }
+
+}
