@@ -56,4 +56,19 @@
     .bg-color-light{
         background-color: #ffffff;
     }
+
+    .bg-color-dark{
+        background-color: #333333;
+    }
+}
+
+.widget .pricelist{
+    .header{
+        height:60px;
+
+        h2{
+            line-height: 2.08em;
+            line-height: 60px;
+        }
+    }
 }
