@@ -1,20 +1,26 @@
 {{ #data }}
     <div class="pricelist">
-        <h1>{{ title }}</h1>
-        {{ #categories }}
-        <div class="category">
-            <h2 class="bg-color-light">{{ name }}</h2>
-            <div class="entries">
-                <ul>
-                    {{ #entries }}
-                        <li>
-                            <h3>{{ name }}<span class="pull-right">&euro;{{ price }}</span></h3>
+        <div class="header">
+            <h2>{{ title }}</h2>
+        </div>
+        <ul>
+            {{ #categories }}
+            <li class="category bg-color-light">
+                <div class="category-header">
+                    <h2>{{ name }}</h2>
+                </div>
+                <div class="entries">
+                    <ul>
+                        {{ #entries }}
+                        <li class="entry">
+                            <h3>{{ name }}</h3><span class="pull-right">&euro; {{ price }}</span>
                             <p>{{ description }}</p>
                         </li>
-                    {{ /entries }}
-                </ul>
-            </div>
-        </div>
-        {{ /categories }}
+                        {{ /entries }}
+                    </ul>
+                </div>
+            </li>
+            {{ /categories }}
+        </ul>
     </div>
 {{ /data }}
