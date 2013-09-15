@@ -1,0 +1,38 @@
+.weekmenu{
+    .header h2{
+        margin-left: 20px;
+    }
+
+    ul li{
+        float:none;
+    }
+
+    .pull-right{
+        float:right;
+        width:20%;
+    }
+
+    .category{
+
+        .category-header{
+            padding-top:10px;
+            padding-left: 20px;
+            padding-bottom:10px;
+            h2{
+                font-size: 1.4em;
+            }
+        }
+
+    }
+}
+
+.list .weekmenu{
+
+    .bg-color-light{
+        background-color: #f2f2f2;
+    }
+
+    .bg-color-dark{
+        background-color: #333333;
+    }
+}

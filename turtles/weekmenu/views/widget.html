@@ -5,14 +5,32 @@
         </div>
         <ul>
             {{ #categories }}
-                <li class="category-header">
-
+                <li class="category category-header bg-color-light">
+                    {{ name }}<span class="pull-right">&euro; {{ price }}</span>
                 </li>
                 <li>
-
+                    <ul>
+                        {{ #meals }}
+                            <li>
+                                <b>{{ day }}:</b> {{ name }}
+                            </li>
+                        {{ /meals }}
+                    </ul>
                 </li>
 
             {{ /categories }}
+        </ul>
+        <div class="header bg-color-dark">
+            <h2>Offers this week!</h2>
+        </div>
+        <ul>
+            {{ #offers }}
+                <li>
+                    {{ name }} <span class="pull-right">&euro; {{ price }}</span>
+                    <br/>
+                    {{ description }}
+                </li>
+            {{ /offers }}
         </ul>
     </div>
 {{ /data }}
