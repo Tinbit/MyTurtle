@@ -1,7 +1,6 @@
 /*
  * FlatTurtle
- * @author: Jens Segers (jens@irail.be)
- * @author: Michiel Vancoillie (michiel@irail.be)
+ * @author: Nik Torfs (nik@flatturtle.com)
  * @license: AGPLv3
  */
 
@@ -37,7 +36,7 @@
 
             $.get("turtles/weekmenu/views/widget.html", function(template) {
                 var data = {
-
+                    today: getMenuToday(self.options.data),
                     data : self.options.data
                 };
 
@@ -53,5 +52,28 @@
         collection : collection,
         view : view
     });
+
+    function getMenuToday(data){
+        var d = new Date();
+        var dayIndex = d.getDay() - 1; // 1 for monday , ...
+        var menu_today = [];
+
+        // checking if there are categories and that the index is smaller than 5
+        if(data.categories && dayIndex < 5){
+
+            for(var i in data.categories){
+                var category = data.categories[i];
+                var entry = {};
+                entry.categoryName = category.name;
+                entry.price = category.price;
+                entry.mealName = category.meals[dayIndex].name;
+                entry.image = category.meals[dayIndex].image;
+
+                menu_today.push(entry);
+            }
+
+        }
+        return menu_today;
+    }
 
 })(jQuery);

@@ -1,36 +1,65 @@
-{{ #data }}
-    <div class="weekmenu">
-        <div class="header bg-color-dark">
-            <h2>Menu Today</h2>
-        </div>
-        <ul>
-            {{ #categories }}
-                <li class="category category-header bg-color-light">
-                    {{ name }}<span class="pull-right">&euro; {{ price }}</span>
-                </li>
-                <li>
-                    <ul>
-                        {{ #meals }}
-                            <li>
-                                <b>{{ day }}:</b> {{ name }}
-                            </li>
-                        {{ /meals }}
-                    </ul>
-                </li>
+<div class="weekmenu">
 
-            {{ /categories }}
-        </ul>
-        <div class="header bg-color-dark">
-            <h2>Offers this week!</h2>
+    <div class="container">
+        <div class="header">
+            <h2>Today</h2>
         </div>
-        <ul>
-            {{ #offers }}
-                <li>
-                    {{ name }} <span class="pull-right">&euro; {{ price }}</span>
-                    <br/>
-                    {{ description }}
-                </li>
-            {{ /offers }}
-        </ul>
+        {{ #today }}
+            <div class="category">
+                <div class="header">
+                    {{ categoryName }}
+                </div>
+                <div class="image">
+                    {{ image }}
+                </div>
+                <div class="name">
+                    {{ mealName }}
+                </div>
+                <div>
+                    &euro;{{ price }}
+                </div>
+            </div>
+        {{ /today }}
     </div>
-{{ /data }}
+
+    {{ #data }}
+    <div class="container">
+        <div class="header">
+            <h2>WeekMenu</h2>
+        </div>
+        {{ #categories }}
+        <div class="category">
+            <div class="header bg-color-light">
+                {{ name }}<span class="pull-right">&euro; {{ price }}</span>
+            </div>
+            <ul>
+                {{ #meals }}
+                {{ #name }}
+                <li>
+                    <div class="day">{{ day }}:</div><div class="name">{{ name }}</div>
+                </li>
+                {{ /name }}
+                {{ /meals }}
+            </ul>
+        </div>
+        {{ /categories }}
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h2>Offers</h2>
+        </div>
+        {{ #offers }}
+        <div class="offer">
+            <div class="image">
+
+            </div>
+            <div class="info">
+                <h3>{{ name }}<span class="pull-right">&euro; {{ price }}</span></h3>
+                <p>{{ description }}</p>
+            </div>
+        </div>
+        {{ /offers }}
+    </div>
+    {{ /data }}
+</div>

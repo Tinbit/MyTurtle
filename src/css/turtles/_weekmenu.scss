@@ -1,10 +1,13 @@
+@import "../mixin";
+
 .weekmenu{
-    .header h2{
-        margin-left: 20px;
+    .container{
+        overflow:auto;
+        width: 100%;
     }
 
-    ul li{
-        float:none;
+    .header h2{
+        margin-left: 20px;
     }
 
     .pull-right{
@@ -13,23 +16,47 @@
     }
 
     .category{
+        float:left;
+        width:50%;
+        @include box-sizing(border-box);
+        border:1px solid #c2c2c2;
 
-        .category-header{
-            padding-top:10px;
+        .header{
+            line-height: 1.4em;
             padding-left: 20px;
-            padding-bottom:10px;
+            height:auto;
+            @include box-sizing(border-box);
             h2{
                 font-size: 1.4em;
             }
         }
 
+
+        ul li{
+            float:none;
+
+            .day{
+                width: 30%;
+                text-align: right;
+                float:left;
+                display: inline-block;
+            }
+
+            .name{
+                width: 70%;
+                float:left;
+                text-align: center;
+                display: inline-block;
+            }
+
+        }
     }
 }
 
 .list .weekmenu{
 
     .bg-color-light{
-        background-color: #f2f2f2;
+        background-color: #c2c2c2;
     }
 
     .bg-color-dark{
