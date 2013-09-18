@@ -1,22 +1,22 @@
 <div class="weekmenu">
 
-    <div class="container">
-        <div class="header">
+    <div class="container today">
+        <div class="header bg-color-dark">
             <h2>Today</h2>
         </div>
         {{ #today }}
             <div class="category">
-                <div class="header">
+                <div class="header bg-color-light">
                     {{ categoryName }}
                 </div>
-                <div class="image">
-                    {{ image }}
-                </div>
-                <div class="name">
-                    {{ mealName }}
-                </div>
-                <div>
-                    &euro;{{ price }}
+                <div class="wrap">
+                    <div class="image">
+                        <img src="{{ image }}"/>
+                    </div>
+                    <div class="text">
+                        <h3>{{ mealName }}</h3>
+                        <p>&euro; {{ price }}</p>
+                    </div>
                 </div>
             </div>
         {{ /today }}
@@ -24,7 +24,7 @@
 
     {{ #data }}
     <div class="container">
-        <div class="header">
+        <div class="header bg-color-dark">
             <h2>WeekMenu</h2>
         </div>
         {{ #categories }}
@@ -46,17 +46,23 @@
     </div>
 
     <div class="container">
-        <div class="header">
+        <div class="header bg-color-dark">
             <h2>Offers</h2>
         </div>
         {{ #offers }}
         <div class="offer">
-            <div class="image">
 
-            </div>
-            <div class="info">
-                <h3>{{ name }}<span class="pull-right">&euro; {{ price }}</span></h3>
-                <p>{{ description }}</p>
+            <div class="wrap">
+                <div class="header bg-color-light">
+                    {{ name }}
+                </div>
+                <div class="image">
+                    <img src="{{ image }}"/>
+                </div>
+                <div class="text">
+                    <h3>{{ description }}</h3>
+                    <p>&euro; {{ price }}</p>
+                </div>
             </div>
         </div>
         {{ /offers }}
