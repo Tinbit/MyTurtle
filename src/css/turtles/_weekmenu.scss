@@ -82,44 +82,7 @@
         }
     }
 
-    .offer{
-        text-align: center;
 
-        padding: 5px;
-
-        .wrap{
-            width: 100%;
-
-            .header{
-                line-height: 1.4em;
-                font-size: 1.4em;
-                padding-left: 20px;
-                height:auto;
-                @include box-sizing(border-box);
-            }
-
-            .image{
-                float:left;
-            }
-
-            h3{
-                word-wrap: break-word;
-                overflow: hidden;
-            }
-
-            p{
-                margin-top: 20px;
-            }
-        }
-
-        div{
-            margin-bottom:5px;
-        }
-
-        .image{
-            margin-right: 5px;
-        }
-    }
 }
 
 .list .weekmenu{
