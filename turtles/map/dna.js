@@ -56,6 +56,10 @@
         },
         refresh : function() {
             var self = this;
+            
+            if(typeof application !== "undefined"){
+                application.clearCache();
+            }
 
             if (self.map != null) {
                 google.maps.event.trigger(self.map, "resize");
