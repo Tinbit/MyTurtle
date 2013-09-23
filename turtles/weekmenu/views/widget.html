@@ -3,8 +3,7 @@
     {{ ^empty }}
     <div class="container today">
         <div class="header bg-color-dark">
-            <h2>Menu of the day</h2>
-
+            <h2>{{ today_title }}</h2>
         </div>
         <section class="entries">
             <ul>
@@ -34,9 +33,9 @@
 
     {{ #data }}
     <div class="container">
-        <header class="header">
-            <div class="bg-color-dark"><h2>Week Menu</h2></div>
-        </header>
+        <div class="header bg-color-dark">
+            <div class="bg-color-dark"><h2>{{ weekmenu_title }}</h2></div>
+        </div>
         <section class="entries">
             <ul>
                 {{ #categories }}

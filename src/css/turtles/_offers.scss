@@ -67,15 +67,11 @@
 
 .widget .offers{
     .header{
-        height: 60px;
-
-        h2{
-            line-height: 2.08em;
-            line-height: 60px;
-        }
+        display:none;
     }
     .offer{
         .header{
+            display: block;
             height: auto;
         }
     }
