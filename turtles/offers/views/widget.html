@@ -1,0 +1,28 @@
+<div class="offers">
+    {{ #data }}
+    <div class="container">
+        <div class="header bg-color-dark">
+            <h2>Offers</h2>
+        </div>
+        {{ #offers }}
+        <div class="offer">
+
+            <div class="wrap">
+                <div class="header bg-color-light">
+                    {{ name }}
+                </div>
+                {{ #image }}
+                <div class="image">
+                    <img src="{{ image }}"/>
+                </div>
+                {{ /image }}
+                <div class="text">
+                    <h3>{{ description }}</h3>
+                    <p>&euro; {{ price }}</p>
+                </div>
+            </div>
+        </div>
+        {{ /offers }}
+    </div>
+    {{ /data }}
+</div>

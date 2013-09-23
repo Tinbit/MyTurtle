@@ -1,0 +1,62 @@
+<div class="weekmenu">
+    {{ #today }}
+    {{ ^empty }}
+    <div class="container today">
+        <div class="header bg-color-dark">
+            <h2>Menu of the day</h2>
+
+        </div>
+        <section class="entries">
+            <ul>
+                {{ #entries }}
+                <li class="category">
+                    <div class="header bg-color-light">
+                        {{ categoryName }}
+                    </div>
+                    <section class="wrap">
+                        {{ #image }}
+                        <div class="image">
+                            <img src="{{ image }}"/>
+                        </div>
+                        {{ /image }}
+                        <div class="text">
+                            <h3>{{ mealName }}</h3>
+                            <p>&euro; {{ price }}</p>
+                        </div>
+                    </section>
+                </li>
+                {{ /entries }}
+            </ul>
+        </section>
+    </div>
+    {{ /empty }}
+    {{ /today }}
+
+    {{ #data }}
+    <div class="container">
+        <header class="header">
+            <div class="bg-color-dark"><h2>Week Menu</h2></div>
+        </header>
+        <section class="entries">
+            <ul>
+                {{ #categories }}
+                <li class="category">
+                    <div class="header bg-color-light">
+                        {{ name }}<span class="pull-right">&euro; {{ price }}</span>
+                    </div>
+                    <section>
+                        <ul>
+                            {{ #meals }}
+                            <li>
+                                <div class="day">{{ day }}:</div><div class="name">{{ name }}</div>
+                            </li>
+                            {{ /meals }}
+                        </ul>
+                    </section>
+                </li>
+                {{ /categories }}
+            </ul>
+        </section>
+    </div>
+    {{ /data }}
+</div>

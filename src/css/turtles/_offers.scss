@@ -1,0 +1,82 @@
+@import "../mixin";
+
+.offers{
+    .header h2{
+        margin-left: 20px;
+    }
+
+    .container{
+        overflow:auto;
+        width: 100%;
+    }
+
+    .pull-right{
+        float:right;
+        width:25%;
+    }
+
+    .offer{
+        text-align: center;
+
+        padding: 5px;
+
+        .wrap{
+            width: 100%;
+
+            .header{
+                line-height: 1.4em;
+                font-size: 1.4em;
+                padding-left: 20px;
+                height:auto;
+                @include box-sizing(border-box);
+            }
+
+            .image{
+                float:left;
+            }
+
+            h3{
+                word-wrap: break-word;
+                overflow: hidden;
+            }
+
+            p{
+                margin-top: 20px;
+            }
+        }
+
+        div{
+            margin-bottom:5px;
+        }
+
+        .image{
+            margin-right: 5px;
+        }
+    }
+}
+
+.list .offers{
+    .bg-color-light{
+        background-color: #c2c2c2;
+    }
+
+    .bg-color-dark{
+        background-color: #333333;
+    }
+}
+
+.widget .offers{
+    .header{
+        height: 60px;
+
+        h2{
+            line-height: 2.08em;
+            line-height: 60px;
+        }
+    }
+    .offer{
+        .header{
+            height: auto;
+        }
+    }
+}

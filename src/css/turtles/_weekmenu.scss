@@ -1,0 +1,117 @@
+@import "../mixin";
+
+.weekmenu{
+
+    .header h2{
+        margin-left: 20px;
+    }
+
+    .container{
+        overflow:auto;
+        width: 100%;
+    }
+
+    .pull-right{
+        float:right;
+        width:25%;
+    }
+
+    .today{
+        .category{
+            text-align: center;
+            padding: 5px;
+
+            .wrap{
+                width: 100%;
+
+                .image{
+                    float:left;
+                }
+
+                h3{
+                    word-wrap: break-word;
+                    overflow: hidden;
+                }
+
+                p{
+                    margin-top: 10px;
+                }
+            }
+
+            div{
+                margin-bottom:5px;
+            }
+
+            .image{
+                margin-right: 5px;
+            }
+        }
+
+    }
+
+    .category{
+        padding:5px;
+        float:left;
+        width:50%;
+        @include box-sizing(border-box);
+
+        .header{
+            line-height: 1.3em;
+            font-size: 1.3em;
+            padding-left: 20px;
+            height:auto;
+            @include box-sizing(border-box);
+        }
+
+        ul li{
+            float:none;
+
+            .day{
+                width: 30%;
+                text-align: right;
+                float:left;
+                display: inline-block;
+            }
+
+            .name{
+                width: 70%;
+                float:left;
+                text-align: center;
+                display: inline-block;
+            }
+        }
+    }
+
+    .category:only-of-type{
+        width: 100%;
+    }
+
+
+}
+
+.list .weekmenu{
+
+    .bg-color-light{
+        background-color: #c2c2c2;
+    }
+
+    .bg-color-dark{
+        background-color: #333333;
+    }
+}
+
+.widget .weekmenu{
+    .header{
+        height: 60px;
+
+        h2{
+            line-height: 2.08em;
+            line-height: 60px;
+        }
+    }
+    .category{
+        .header{
+            height: auto;
+        }
+    }
+}
