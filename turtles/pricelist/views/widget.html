@@ -13,8 +13,10 @@
                 <ul>
                     {{ #entries }}
                     <li class="entry">
-                        <h3>{{ name }}</h3><span class="pull-right">&euro; {{ price }}</span>
+                        <h3>{{ name }}<span class="pull-right">&euro; {{ price }}</span></h3>
+                        {{ #description }}
                         <p>{{ description }}</p>
+                        {{ /description }}
                     </li>
                     {{ /entries }}
                 </ul>
