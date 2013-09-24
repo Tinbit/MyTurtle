@@ -12,6 +12,7 @@
 
             this.on("born", this.configure);
             this.on("reconfigure", this.configure);
+            this.on("refresh", this.configure)
 
         },
         configure : function() {

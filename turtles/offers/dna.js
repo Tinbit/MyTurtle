@@ -11,11 +11,13 @@
             _.bindAll(this, "configure");
 
             this.on("born", this.configure);
+            this.on("refresh", this.configure);
             this.on("reconfigure", this.configure);
         },
         configure : function(){
-            if(!this.options.data)
+            if(!this.options.data){
                 return false;
+            }
 
             this.options.data = JSON.parse(this.options.data);
             this.trigger("render");
