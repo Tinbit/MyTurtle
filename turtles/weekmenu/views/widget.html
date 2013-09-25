@@ -1,4 +1,6 @@
+{{ #data }}
 <div class="weekmenu">
+    {{ #show_today }}
     {{ #today }}
     {{ ^empty }}
     <div class="container today">
@@ -30,8 +32,9 @@
     </div>
     {{ /empty }}
     {{ /today }}
+    {{ /show_today }}
 
-    {{ #data }}
+    {{ ^show_today }}
     <div class="container">
         <div class="header bg-color-dark">
             <div class="bg-color-dark"><h2>{{ weekmenu_title }}</h2></div>
@@ -57,5 +60,6 @@
             </ul>
         </section>
     </div>
-    {{ /data }}
+    {{ /show_today }}
 </div>
+{{ /data }}
