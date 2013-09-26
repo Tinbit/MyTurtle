@@ -12,7 +12,7 @@
 
             this.on("born", this.configure);
             this.on("reconfigure", this.configure);
-            this.on("refresh", this.refresh);
+            this.on("refresh", this.configure);
         },
         configure : function(){
             if(!this.options.data)
