@@ -52,19 +52,35 @@
     .category{
         padding:5px;
         float:left;
-        width:50%;
+        width:100%;
         @include box-sizing(border-box);
 
         .header{
-            line-height: 1.3em;
-            font-size: 1.3em;
+            line-height: 1.8em;
+            font-size: 1.8em;
             padding-left: 20px;
             height:auto;
             @include box-sizing(border-box);
         }
 
+        h3{
+            line-height: 1.4em;
+            font-size: 1.4em;
+        }
+
+        .price{
+            line-height: 1.4em;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
         ul li{
             float:none;
+            font-size:1.2em;
+
+            div{
+                padding:2px 0;
+            }
 
             .day{
                 width: 30%;
@@ -80,10 +96,6 @@
                 display: inline-block;
             }
         }
-    }
-
-    .category:only-of-type{
-        width: 100%;
     }
 
 
