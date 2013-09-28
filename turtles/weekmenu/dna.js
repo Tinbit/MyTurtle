@@ -8,18 +8,27 @@
 
     var collection = Backbone.Collection.extend({
         initialize : function(models, options) {
-            _.bindAll(this, "configure");
+            _.bindAll(this, "configure", "reconfigure");
 
             this.on("born", this.configure);
-            this.on("reconfigure", this.configure);
-            this.on("refresh", this.configure);
+            this.on("reconfigure", this.reconfigure);
         },
         configure : function(){
             if(!this.options.data)
                 return false;
 
-            this.options.data = JSON.parse(this.options.data);
+                this.options.data = JSON.parse(this.options.data);
+
             this.trigger("render");
+        },
+        // when the options are loaded here by Turtles.options the json doesn't need to be parsed anymore
+        reconfigure : function(){
+            if(!this.options.data)
+                return false;
+
+
+
+            this.trigger("render")
         }
     });
 
