@@ -11,7 +11,6 @@
             _.bindAll(this, "configure");
 
             this.on("born", this.configure);
-            this.on("refresh", this.configure);
             this.on("reconfigure", this.configure);
         },
         configure : function(){

@@ -20,15 +20,6 @@
                 this.options.data = JSON.parse(this.options.data);
 
             this.trigger("render");
-        },
-        // when the options are loaded here by Turtles.options the json doesn't need to be parsed anymore
-        reconfigure : function(){
-            if(!this.options.data)
-                return false;
-
-
-
-            this.trigger("render")
         }
     });
 
