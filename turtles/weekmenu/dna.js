@@ -8,10 +8,10 @@
 
     var collection = Backbone.Collection.extend({
         initialize : function(models, options) {
-            _.bindAll(this, "configure", "reconfigure");
+            _.bindAll(this, "configure");
 
             this.on("born", this.configure);
-            this.on("reconfigure", this.reconfigure);
+            this.on("reconfigure", this.configure);
         },
         configure : function(){
             if(!this.options.data)

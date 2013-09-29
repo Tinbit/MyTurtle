@@ -74,7 +74,7 @@
 
             // Overwrite default error function
             window.onerror = function(message, url, lineNumber) {
-                log.fatal("HOUSTON, WE HAVE A PROBLEM: " + message + " (line "+ lineNumber + ")");
+                log.fatal("HOUSTON, WE HAVE A PROBLEM: " + message + " (line "+ lineNumber + ") (url " + url + ")" );
                 return true;
             };
 
