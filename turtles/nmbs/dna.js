@@ -169,7 +169,10 @@
                             async: true,
                             datatype: "json",
                             success: function(data){
+                                console.log("data: ");
+                                console.log(data);
                                 self.matchConnections(data);
+
                             }
                         });
                     }
@@ -218,7 +221,7 @@
                                     self.liveboard[i].via = [];
 
                                 var viaTime = new Date(stoparray[j].time * 1000);
-                                stoparray[j].time = viaTime.format("{H}:{M}");
+                                stoparray[j].formattedTime = viaTime.format("{H}:{M}");
                                 self.liveboard[i].via.push(stoparray[j]);
                                 self.trigger("reset");
                             }
@@ -226,6 +229,8 @@
                     }
                 }
             }
+            console.log("liveboard");
+            console.log(self.liveboard);
         }
     });
 
