@@ -72,7 +72,7 @@
 
                 for (var i in items) {
                     var time = new Date(items[i].publishedDate);
-                    items[i].time = time.format("{H}:{M}");
+                    items[i].time = time.format("{d}/{m}/{y} {H}:{M}");
                     // Determine type
                     if(items[i].enclosure && items[i].enclosure.href != null && !items[i].summary){
                         entries.type_images = true;
