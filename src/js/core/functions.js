@@ -146,9 +146,9 @@ function formatTime(time){
     var hours = Math.floor(time/60);
     var minutes = Math.floor(time%60);
     if(hours == 0 && minutes == 0){
-        time = "< 1m";
+        time = "< 1'";
     }if(hours == 0 && minutes > 0){
-        time = minutes + "m";
+        time = minutes + "'";
     }else if(time < 0){
         time = false;
     }else{
