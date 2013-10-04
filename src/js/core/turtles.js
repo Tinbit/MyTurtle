@@ -265,7 +265,8 @@ window.Turtles = (function() {
 
 
         // let the panesizer know that a turtle is removed
-        PaneSizer.removeTurtle(turtle.type);
+        var panel = Panes.get(pane);
+        PaneSizer.removeTurtle(panel.type);
 
 
         // remove placeholder
