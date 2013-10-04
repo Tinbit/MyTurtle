@@ -265,7 +265,7 @@ window.Turtles = (function() {
 
 
         // let the panesizer know that a turtle is removed
-        var panel = Panes.get(pane);
+        var panel = Panes.get(turtle.pane);
         PaneSizer.removeTurtle(panel.type);
 
 
