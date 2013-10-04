@@ -43,6 +43,7 @@ window.Screen = (function() {
         for (var id in config.panes) {
             var pane = config.panes[id];
             Panes.add(id, pane);
+
         }
         log.info(" Done adding panes");
 
@@ -53,6 +54,7 @@ window.Screen = (function() {
             var turtle = config.turtles[id];
             Turtles.grow(turtle.type, id, turtle.pane, turtle.order, turtle.options);
         }
+
         log.info(" Done adding turtles");
 
         // enable plugins
@@ -126,7 +128,6 @@ window.Screen = (function() {
             Turtles.options(turtle_id, {location:''});
         }
     }
-
 
     /*
      * Public interface to this object

@@ -193,6 +193,10 @@ window.Turtles = (function() {
             Turtles.trigger(id, "shown");
         }
 
+        // let the panesizer know that a turtle is added
+        var panel = Panes.get(pane);
+        PaneSizer.addTurtle(panel.type);
+
         // return our baby turtle
         return instance;
     }
@@ -258,6 +262,11 @@ window.Turtles = (function() {
 
         // trigger destroy event
         trigger(id, "destroy");
+
+
+        // let the panesizer know that a turtle is removed
+        PaneSizer.removeTurtle(turtle.type);
+
 
         // remove placeholder
         turtle.el.remove();

@@ -116,6 +116,7 @@
         <script src="src/js/core/turtles.js?<?php echo $rand; ?>"></script>
         <script src="src/js/core/panes.js?<?php echo $rand; ?>"></script>
         <script src="src/js/core/jobs.js?<?php echo $rand; ?>"></script>
+        <script src="src/js/core/panesizer.js?<?php echo $rand; ?>"></script>
 
         <script type="text/javascript">
             log.info("Done loading core files");
