@@ -169,8 +169,6 @@
                             async: true,
                             datatype: "json",
                             success: function(data){
-                                console.log("data: ");
-                                console.log(data);
                                 self.matchConnections(data);
 
                             }
@@ -229,8 +227,6 @@
                     }
                 }
             }
-            console.log("liveboard");
-            console.log(self.liveboard);
         }
     });
 

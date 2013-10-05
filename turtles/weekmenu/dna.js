@@ -10,6 +10,7 @@
         initialize : function(models, options) {
             _.bindAll(this, "configure");
 
+
             this.on("born", this.configure);
             this.on("reconfigure", this.configure);
         },
@@ -17,7 +18,7 @@
             if(!this.options.data)
                 return false;
 
-                this.options.data = JSON.parse(this.options.data);
+            this.options.data = JSON.parse(this.options.data);
 
             this.trigger("render");
         }
@@ -40,10 +41,10 @@
                 today.entries=getMenuToday(self.options.data);
                 today.empty = today.entries.length == 0;
                 today.today_title = self.options.data.today_title;
-                var data = filterData(self.options.data);
+                var weekmenu = filterData(self.options.data);
                 var data = {
                     today: today,
-                    data : data
+                    data : weekmenu
                 };
 
                 // render html

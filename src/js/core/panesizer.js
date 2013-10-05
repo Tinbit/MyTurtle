@@ -1,3 +1,12 @@
+/*
+ * FlatTurtle
+ * The PaneSizer object will handle screen sizing,
+ * it needs to be notified when a turtle is added and when it is deleted to function properly
+ *
+ * @author: Nik Torfs (nik@flatturtle.com)
+ * @license: AGPLv3
+ */
+
 window.PaneSizer = (function(){
 
     // amount of widget turtles
