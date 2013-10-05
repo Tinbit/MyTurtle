@@ -108,7 +108,7 @@
                     }
 
                     if (!liveboard[i].long_name) {
-                        liveboard[i].long_name = "-";
+                        liveboard[i].long_name = "No further information found";
                     } else {
                         liveboard[i].long_name = liveboard[i].long_name.capitalize();
 
