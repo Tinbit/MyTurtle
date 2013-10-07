@@ -32,6 +32,8 @@ window.PaneSizer = (function(){
         }else if(paneType == "list"){
             listTurtles--;
         }
+        console.log("widget: " +  widgetTurtles);
+        console.log("list: " +  listTurtles);
         updatePaneSize();
     }
 
@@ -50,8 +52,8 @@ window.PaneSizer = (function(){
         }else if(widgetTurtles == 0 && listTurtles != 0){
 
             // fullscreen for right pane
-            listPane.css('display','none');
-            groupPane.css('width','100%');
+            groupPane.css('display','none');
+            listPane.css('width','100%');
 
         }else{
             // remove added inline css

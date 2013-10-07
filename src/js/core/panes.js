@@ -105,6 +105,11 @@ window.Panes = (function() {
         // remove tab
         if (pane.type == "widget") {
             pane.tab.remove();
+
+            //tell paneresizer that turtles got deleted from widgets
+            $(".turtle" ,pane.el).each(function(){
+                PaneSizer.removeTurtle(pane.type);
+            });
         }
         // remove element
         pane.el.remove();
