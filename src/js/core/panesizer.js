@@ -32,8 +32,6 @@ window.PaneSizer = (function(){
         }else if(paneType == "list"){
             listTurtles--;
         }
-        console.log("widget: " +  widgetTurtles);
-        console.log("list: " +  listTurtles);
         updatePaneSize();
     }
 
