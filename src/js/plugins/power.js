@@ -20,7 +20,7 @@ var Power = {
         // MyTurtleSleep page will turn it off after 3s
         //document.location.href = '../sleep';
         if (typeof application == "object")
-            application.loadURL('../sleep');
+            application.loadURL(document.location.href + '../sleep');
         else
             document.location.href = '../sleep';
     },
