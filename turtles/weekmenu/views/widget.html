@@ -1,12 +1,13 @@
 {{ #data }}
 <div class="weekmenu">
     {{ #show_today }}
-    {{ #today }}
-    {{ ^empty }}
+
     <div class="container today">
         <div class="header bg-color-dark">
             <h2>{{ today_title }}</h2>
         </div>
+        {{ #today }}
+        {{ ^empty }}
         <section class="entries">
             <ul>
                 {{ #entries }}
@@ -29,9 +30,15 @@
                 {{ /entries }}
             </ul>
         </section>
+        {{ /empty }}
+        {{ #empty }}
+        <p class="empty-message">
+            There is no menu available today.
+        </p>
+        {{ /empty }}
+        {{ /today }}
     </div>
-    {{ /empty }}
-    {{ /today }}
+
     {{ /show_today }}
 
     {{ ^show_today }}
@@ -41,6 +48,11 @@
         </div>
         <section class="entries">
             <ul>
+                {{ ^categories }}
+                <p class="empty-message">
+                    No menu of the week categories found.
+                </p>
+                {{ /categories }}
                 {{ #categories }}
                 <li class="category">
                     <div class="header bg-color-light">
@@ -53,10 +65,16 @@
                                 <div class="day">{{ day }}:</div><div class="name">{{ name }}</div>
                             </li>
                             {{ /meals }}
+                            {{ ^meals }}
+                            <p class="empty-message">
+                                There are no meals in this category
+                            </p>
+                            {{ /meals }}
                         </ul>
                     </section>
                 </li>
                 {{ /categories }}
+
             </ul>
         </section>
     </div>
