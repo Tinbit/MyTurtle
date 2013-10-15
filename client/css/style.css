@@ -1311,12 +1311,13 @@ ul li {
       width: 25%; }
     .pricelist .category .entries ul li.entry h3 {
       font-size: 1.2em;
-      margin-bottom: 10px; }
+      margin-bottom: 5px; }
     .pricelist .category .entries ul li.entry p {
       width: 75%;
-      font-size: 1.1em;
-      font-weight: 200;
-      margin-bottom: 10px; }
+      font-size: 1em;
+      line-height: 1em;
+      font-weight: 100;
+      margin-bottom: 5px; }
 
 .list .pricelist .bg-color-light {
   background-color: #f2f2f2; }
@@ -1351,7 +1352,8 @@ ul li {
       float: left; }
     .offers .offer .wrap h3 {
       word-wrap: break-word;
-      overflow: hidden; }
+      overflow: hidden;
+      line-height: 1.17em; }
     .offers .offer .wrap p {
       margin-top: 20px; }
   .offers .offer div {
