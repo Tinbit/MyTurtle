@@ -187,7 +187,7 @@
             var self = this;
 
             try {
-                json = $.parseJSON(data);
+                json = JSON.parse(data);
                 data = json;
             } catch (e) {}
 
