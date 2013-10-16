@@ -26,12 +26,13 @@
          },
          configure : function() {
             // don't fetch if there is no data
-            if ((this.options.primary == null || this.options.primary == "") &&
+             if ((this.options.primary == null || this.options.primary == "") &&
                  (this.options.secondary == null || this.options.secondary == ""))
                  return;
 
-            this.options.primary = this.options.primary.toUpperCase();
-            this.options.secondary = this.options.secondary.toUpperCase();
+             this.options.primary = this.options.primary.toUpperCase();
+             this.options.secondary = this.options.secondary.toUpperCase();
+             this.refresh();
          },
          refresh : function() {
              // don't fetch if there is no data
