@@ -13,7 +13,7 @@
     {{/type_images}}
     {{#rss_feeds}}
         <div class="rss bg-color-dark">
-            <h2>{{title}}</h2>
+            <h2>{{{title}}}</h2>
             <p class="time">{{time}}</p>
             <div class="text">
                 {{#enclosure}}
@@ -21,8 +21,8 @@
                         <img src="{{href}}" />
                     </div>
                 {{/enclosure}}
-                <p>{{summary}}</p>
-                <p class="source">Source: {{source}}</p>
+                <p>{{{summary}}}</p>
+                <p class="source">Source: {{{source}}}</p>
             </div>
         </div>
     {{/rss_feeds}}
