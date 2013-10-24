@@ -1,32 +1,38 @@
-{{#entries}}
-    {{#type_images}}
-        <div class="rss bg-color-dark imagewall">
-            <p class="source">Image stream: {{source}}</p>
-                <div class="wall">
-                    {{#rss_images}}
-                        {{#enclosure}}
-                            <img src="{{href}}" />
-                        {{/enclosure}}
-                    {{/rss_images}}
-                </div>
-        </div>
-    {{/type_images}}
-    {{#rss_feeds}}
-        <div class="rss bg-color-dark">
-            <h2>{{{title}}}</h2>
-            <p class="time">{{time}}</p>
-            <div class="text">
-                {{#enclosure}}
-                    <div class="img">
-                        <img src="{{href}}" />
+{{ ^error }}
+    {{#entries}}
+        {{#type_images}}
+            <div class="rss bg-color-dark imagewall">
+                <p class="source">Image stream: {{source}}</p>
+                    <div class="wall">
+                        {{#rss_images}}
+                            {{#enclosure}}
+                                <img src="{{href}}" />
+                            {{/enclosure}}
+                        {{/rss_images}}
                     </div>
-                {{/enclosure}}
-                <p>{{{summary}}}</p>
-                <p class="source">Source: {{{source}}}</p>
             </div>
-        </div>
-    {{/rss_feeds}}
-{{/entries}}
-{{^entries}}
-    <p>No information to display</p>
-{{/entries}}
+        {{/type_images}}
+        {{#rss_feeds}}
+            <div class="rss bg-color-dark">
+                <h2>{{{title}}}</h2>
+                <p class="time">{{time}}</p>
+                <div class="text">
+                    {{#enclosure}}
+                        <div class="img">
+                            <img src="{{href}}" />
+                        </div>
+                    {{/enclosure}}
+                    <p>{{{summary}}}</p>
+                    <p class="source">Source: {{{source}}}</p>
+                </div>
+            </div>
+        {{/rss_feeds}}
+    {{/entries}}
+    {{^entries}}
+        <p>No information to display</p>
+    {{/entries}}
+{{ /error }}
+{{ #error }}
+    <p>{{error_message}}</p>
+{{ /error }}
+

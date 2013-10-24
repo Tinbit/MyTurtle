@@ -51,10 +51,13 @@
                     self.parse();
                     self.trigger("reset");
                 }else{
-                    log.error("TURTLE - RSS - Can't fetch results: ", e.statusText);
+                    log.error("TURTLE - RSS - Can't fetch results: ", result.error.message);
                     // will allow the view to detect errors
                     self.options.error = true;
 
+                    if(result.error.code == 400){
+                        self.options.error_message = "The feed is unavailable at the moment";
+                    }
                     // if there are no previous items to show, display error message
                     if (self.length == 0)
                         self.trigger("reset");
@@ -120,6 +123,7 @@
 
                 var data = {
                     error : this.options.error,
+                    error_message : this.options.error_message,
                     source : this.options.source,
                     entries : this.options.entries
                 };
