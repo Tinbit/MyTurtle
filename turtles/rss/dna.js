@@ -27,7 +27,7 @@
                     // automatic collection refresh each 4 minutes, this will
                     // trigger the reset event
                     setTimeout(function(){
-                        refreshInterval = setInterval(self.refresh, 240000);
+                        refreshInterval = setInterval(self.refresh, 480000);
                     }, Math.round(Math.random()*5000));
                     self.refresh();
                 }});
