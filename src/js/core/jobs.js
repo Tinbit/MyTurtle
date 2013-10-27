@@ -9,6 +9,8 @@
 
 window.Jobs = (function() {
 
+    var activeJobs = {};
+
     /*
      * Execute all functions for passed config
      */
@@ -23,6 +25,7 @@ window.Jobs = (function() {
         //execute a job every next time
         var thisjob = later(1, true); //1 second = min time between 2 occurences, true => use Local time
         thisjob.exec(scheduler, new Date(), execute, job);
+        activeJobs[job.name] = thisjob;
     }
 
     function execute(job){
@@ -35,11 +38,19 @@ window.Jobs = (function() {
         }
     }
 
+    // jobName: the name of the job (included in infoscreen json)
+    function remove(jobName){
+        log.info("removing a cronjob: " + jobName);
+        activeJobs[jobName].stopExec();
+        delete activeJobs[jobName];
+    }
+
     /*
      * Public interface to this object
      */
     return {
-        add : add
+        add : add,
+        remove : remove
     };
 
 }());
