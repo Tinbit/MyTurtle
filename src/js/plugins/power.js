@@ -16,7 +16,7 @@ var Power = {
             application.enableScreen(true);
     },
 
-    disable : function(disable_cron) {
+    disable : function() {
 
         var playerObject = $("#playerobject");
 	    if(typeof playerObject !== "undefined"
@@ -25,17 +25,6 @@ var Power = {
         }
 
         log.info("PLUGIN - POWER - Disable");
-
-
-        if(typeof disable_cron !== "undefined" && disable_cron){
-            // disable the power cronjob (when the screen is started again a new schedule will be made)
-            log.info("PLUGIN - POWER - Disabling Power Cron");
-
-            // the job title as configured in the infoscreen json
-            var jobTitle = "screen_on";
-
-            Jobs.remove(jobTitle);
-        }
 
         // MyTurtleSleep page will turn it off after 3s
         //document.location.href = '../sleep';
