@@ -39,8 +39,7 @@ window.Jobs = (function() {
      * Public interface to this object
      */
     return {
-        add : add,
-        remove : remove
+        add : add
     };
 
 }());

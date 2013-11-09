@@ -19,11 +19,16 @@ window.Interface = (function() {
         log.info(" Start initializing interface");
         Interface.config = config;
 
-        if (config.color)
+        if (config.color){
             color(config.color);
-
-        if (config.logo)
+        }
+        if (config.logo){
             logo(config.logo);
+        }
+        if (config.allow_whitelabel){
+            footer(config.hide_ft_logo);
+        }
+
     }
 
     /*
@@ -75,6 +80,15 @@ window.Interface = (function() {
         log.info("    Update interface logo");
         log.debug("      Logo: ", url);
         $('footer #client-logo').css('background-image', 'url("' + url + '")');
+    }
+
+    /*
+     * Hide FlatTurtle logo if needed
+     */
+    function footer(hide_ft_logo){
+        if(hide_ft_logo){
+            $("#flatturtle-logo").hide();
+        }
     }
 
     /*
