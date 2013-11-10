@@ -1623,7 +1623,7 @@ ul li {
 .results ul li.error {
   margin: 0px;
   padding: 0px;
-  border-left: 95px solid #fff; }
+  padding-left: 95px; }
 
 .results ul li.error .message {
   padding-left: 15px; }
