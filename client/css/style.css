@@ -1311,13 +1311,13 @@ ul li {
       width: 25%; }
     .pricelist .category .entries ul li.entry h3 {
       font-size: 1.2em;
-      margin-bottom: 5px; }
+      margin-bottom: 10px; }
     .pricelist .category .entries ul li.entry p {
       width: 75%;
-      font-size: 1em;
-      line-height: 1em;
+      font-size: 1.1em;
+      line-height: 1.1em;
       font-weight: 100;
-      margin-bottom: 5px; }
+      margin-bottom: 10px; }
 
 .list .pricelist .bg-color-light {
   background-color: #f2f2f2; }
