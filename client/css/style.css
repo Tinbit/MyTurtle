@@ -1446,6 +1446,29 @@ ul li {
 .widget .weekmenu .category .header {
   height: auto; }
 
+.reservations #reservations-now {
+  display: block;
+  height: 65%; }
+.reservations #reservations-next {
+  display: block;
+  height: 35%; }
+.reservations .reservations-left,
+.reservations .reservations-right {
+  float: left;
+  box-sizing: border-box; }
+.reservations .reservations-left {
+  width: 40%; }
+  .reservations .reservations-left .logo {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%; }
+    .reservations .reservations-left .logo img {
+      max-width: 100%; }
+.reservations .reservations-right {
+  padding: 20px;
+  width: 60%;
+  border-left: 1px solid #000; }
+
 /* ==========================================================================
    Default colors and styles
    ========================================================================== */

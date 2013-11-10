@@ -1,0 +1,42 @@
+.reservations{
+    #reservations-now{
+        display: block;
+        height:65%;
+
+        h1{
+
+        }
+    }
+
+    #reservations-next{
+        display: block;
+        height:35%;
+    }
+
+    .reservations-left,
+    .reservations-right{
+        float:left;
+        box-sizing: border-box;
+    }
+
+    .reservations-left{
+        width:40%;
+
+        .logo{
+            margin-left:25%;
+            margin-right:25%;
+            width:50%;
+
+            img{
+                max-width:100%;
+            }
+        }
+
+    }
+
+    .reservations-right{
+        padding:20px;
+        width:60%;
+        border-left:1px solid #000;
+    }
+}
