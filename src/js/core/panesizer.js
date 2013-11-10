@@ -37,28 +37,28 @@ window.PaneSizer = (function(){
 
     // Check if any of the panes is empty, if so make the other one go fullscreen
     function updatePaneSize(){
-        var listPane = $(".group.list");
-        var groupPane = $(".group.widget");
+        var $listPane = $(".group.list");
+        var $groupPane = $(".group.widget");
 
-        // If one (and only one) of the panes is empty let the other one go fullScreen
+        // If one (and only one) of the panes is empty let the other one go full screen
         if(listTurtles == 0 && widgetTurtles != 0){
 
-            //fullscreen for left pane
-            listPane.css('display','none');
-            groupPane.css('width','100%');
+            //full screen for left pane
+            $listPane.hide();
+            $groupPane.addClass('full-screen');
 
         }else if(widgetTurtles == 0 && listTurtles != 0){
 
-            // fullscreen for right pane
-            groupPane.css('display','none');
-            listPane.css('width','100%');
+            // full screen for right pane
+            $groupPane.hide();
+            $listPane.addClass('full-screen');
 
         }else{
-            // remove added inline css
-            listPane.css("display", "");
-            listPane.css("width", "");
-            groupPane.css("display", "");
-            groupPane.css("width", "")
+            // reset panes
+            $listPane.show();
+            $listPane.removeClass("full-screen");
+            $groupPane.show();
+            $groupPane.removeClass("full-screen");
         }
     }
 
