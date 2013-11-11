@@ -86,7 +86,8 @@ window.Interface = (function() {
      * Hide FlatTurtle logo if needed
      */
     function footer(hide_ft_logo){
-        if(hide_ft_logo){
+        var hide = parseInt(hide_ft_logo);
+        if(hide){
             $("#flatturtle-logo").hide();
         }
     }
