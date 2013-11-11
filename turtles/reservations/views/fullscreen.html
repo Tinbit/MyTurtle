@@ -4,24 +4,28 @@
     <!-- left -->
     <div class="reservations-left">
         <div class="logo">
-            <img src="{{logo}}"/>
+            <!-- temporary company name here until logos are provided -->
+            <!--<img src="{{logo}}"/>-->
+            <h1>{{company}}</h1>
+            <span class="reservations-from-to">{{start}}h to {{end}}h</span>
         </div>
-        <span class="reservations-from-to">{{start}}h to {{end}}h</span>
+
     </div>
     <!-- right -->
     <div class="reservations-right">
-        <h1>{{company}}</h1>
-        <span class="subtitle">{{title}}</span>
+        <div class="reservations-header">
+            <h1>{{company}}</h1>
+            <h2>{{title}}</h2>
+        </div>
         <span class="booker"> Booked by: {{booker}}</span>
-        <h3>Description</h3>
         <p>{{description}}</p>
     </div>
     <!-- meeting progress -->
     <div id="reservations-progress" class="progress">
-        <div class="bar" style="width: 60%;"></div>
     </div>
+        <div class="bar" style="width: 60%;"></div>
 
-    <script>
+    <!--<script>
         (function(){
             var min = "{{start}}";
             var max = "{{end}}";
@@ -41,7 +45,7 @@
                 }
             }while(!done);
         }());
-    </script>
+    </script>-->
 
 </div>
 {{/now}}

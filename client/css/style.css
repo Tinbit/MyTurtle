@@ -1448,10 +1448,29 @@ ul li {
 
 .reservations #reservations-now {
   display: block;
-  height: 65%; }
+  height: 700px; }
+  .reservations #reservations-now .reservations-header {
+    margin-bottom: 40px; }
+  .reservations #reservations-now h1 {
+    margin-top: 10px;
+    line-height: 3;
+    font-size: 3em;
+    margin-bottom: 10px; }
+  .reservations #reservations-now .logo {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    height: 300px; }
+    .reservations #reservations-now .logo span.reservations-from-to {
+      line-height: 1.5;
+      font-size: 1.5em; }
+  .reservations #reservations-now h2 {
+    font-size: 2em;
+    line-height: 2em;
+    margin-bottom: 10px; }
 .reservations #reservations-next {
   display: block;
-  height: 35%; }
+  height: 300px; }
 .reservations .reservations-left,
 .reservations .reservations-right {
   float: left;
