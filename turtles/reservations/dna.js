@@ -60,14 +60,16 @@
             // only render when template file is loaded
             if (this.template) {
                 var date1 = new Date();
-                date1.setHours(17);
+                date1.setHours(18);
                 date1.setMinutes(0);
                 var date2 = new Date();
-                date2.setHours(17);
-                date2.setMinutes(20);
+                date2.setHours(19);
+                date2.setMinutes(00);
                 var date3 = new Date();
-                date3.setHours(18);
+                date3.setHours(20);
                 date3.setMinutes(0);
+
+                var descr = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris adipiscing ante nec varius lacinia. Mauris velit purus, commodo et malesuada sed, pellentesque non arcu. Nam id sollicitudin odio. Nullam feugiat elit eget rutrum aliquet. Sed venenatis gravida purus a tincidunt. Etiam semper erat ipsum, at pellentesque metus bibendum ut. Nullam porta faucibus pulvinar. Morbi non sagittis diam. Curabitur at arcu nec ante dignissim suscipit quis quis ipsum.";
                 var data = {
                     now : {
                         "logo": "http://theadvancedapes.com/wp-content/uploads/2013/10/logo-google-astro-1.jpg",
@@ -76,7 +78,7 @@
                         "company": "Google",
                         "title": "Changing to kitkat",
                         "booker": "Larry Page",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris adipiscing ante nec varius lacinia. Mauris velit purus, commodo et malesuada sed, pellentesque non arcu. Nam id sollicitudin odio. Nullam feugiat elit eget rutrum aliquet. Sed venenatis gravida purus a tincidunt. Etiam semper erat ipsum, at pellentesque metus bibendum ut. Nullam porta faucibus pulvinar. Morbi non sagittis diam. Curabitur at arcu nec ante dignissim suscipit quis quis ipsum."
+                        "description": descr.substr(0, 140) + "..."
                     },
                     next: {
                         "logo": "http://theadvancedapes.com/wp-content/uploads/2013/10/logo-google-astro-1.jpg",
@@ -85,7 +87,7 @@
                         "company": "Google",
                         "title": "About that change to kitkat",
                         "booker": "Larry Page",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris adipiscing ante nec varius lacinia. Mauris velit purus, commodo et malesuada sed, pellentesque non arcu. Nam id sollicitudin odio. Nullam feugiat elit eget rutrum aliquet. Sed venenatis gravida purus a tincidunt. Etiam semper erat ipsum, at pellentesque metus bibendum ut. Nullam porta faucibus pulvinar. Morbi non sagittis diam. Curabitur at arcu nec ante dignissim suscipit quis quis ipsum."
+                        "description": descr.substr(0, 140) + "..."
                     }
                 };
 
@@ -107,7 +109,7 @@
         var time_to_go =  max_date - currentDate;
 
         //only update every 30 seconds
-        jQuery.fx.interval = 30000;
+        jQuery.fx.interval = 5000;
 
         $el.find(".progress").stop().width(current_pct*100+"%");
         $el.find(".progress").animate({width:"100%"}, parseInt(time_to_go), "linear", function() {
