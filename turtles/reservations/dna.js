@@ -16,7 +16,24 @@
 
 
             this.trigger("render");
+        },
+        url: function(){
+            var url = this.options.url;
+            url = url.replace(/\//gi, '+');
+
+            //return "https://data.flatturtle.com/2/Calendar/ICal/" + url + ".json";
+        },
+        parse: function(json){
+            var now = json.now;
+            var next = json.next;
+
+            now.start = new Date(now.start * 1000);
+            now.end = new Date(now.end * 1000);
+
+            next.start = new Date(next.start * 1000);
+            next.end = new Date(next.end * 1000);
         }
+
     });
 
     var view = Backbone.View.extend({
@@ -43,13 +60,13 @@
             // only render when template file is loaded
             if (this.template) {
                 var date1 = new Date();
-                date1.setHours(13);
+                date1.setHours(17);
                 date1.setMinutes(0);
                 var date2 = new Date();
-                date2.setHours(13);
-                date2.setMinutes(10);
+                date2.setHours(17);
+                date2.setMinutes(20);
                 var date3 = new Date();
-                date3.setHours(14);
+                date3.setHours(18);
                 date3.setMinutes(0);
                 var data = {
                     now : {
@@ -76,30 +93,28 @@
                 this.$el.empty();
                 this.$el.html(Mustache.render(this.template, data));
 
-                //progress
-                console.log("starting progress");
-                console.log("date1: " + date1);
-                console.log("date2: " + date2);
-                console.log("date3: " + date3);
-                var currentDate = new Date();
-                currentDate.setHours(13);
-                currentDate.setMinutes(5);
-                var inbetween = date2 - date1;
-                console.log("inbetween: " + inbetween);
-                var current_pct = (currentDate-date1)/inbetween;
-                console.log("current pct: " + current_pct);
-                var timetogo=  date2 - currentDate;
-                console.log("timetogo: " + timetogo);
-                jQuery.fx.interval = 30000;
-                this.$el.find(".progress").stop().width(current_pct*100+"%");
-                this.$el.find(".progress").animate({width:"100%"}, parseInt(timetogo), "linear", function() {
-
-                    // change panes
-                })
+                // progress
+                progressBar(this.$el, date1, date2);
             }
 
         }
     });
+
+    // animate the progressbar on the current meeting
+    function progressBar($el, min_date, max_date){
+        var currentDate = new Date();
+        var current_pct = (currentDate - min_date) / (max_date - min_date);
+        var time_to_go =  max_date - currentDate;
+
+        //only update every 30 seconds
+        jQuery.fx.interval = 30000;
+
+        $el.find(".progress").stop().width(current_pct*100+"%");
+        $el.find(".progress").animate({width:"100%"}, parseInt(time_to_go), "linear", function() {
+
+            // request next meeting
+        })
+    }
 
     // register turtle
     Turtles.register("reservations", {
