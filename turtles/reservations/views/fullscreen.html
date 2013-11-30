@@ -1,71 +1,56 @@
 {{#now}}
-<div id="reservations-now" class="clearfix">
-    <h1>Now</h1>
-    <!-- left -->
-    <div class="reservations-left">
-        <div class="logo">
-            <!-- temporary company name here until logos are provided -->
-            <!--<img src="{{logo}}"/>-->
-            <h1>{{company}}</h1>
-            <span class="reservations-from-to">{{start}}h to {{end}}h</span>
-        </div>
+<div id="current">
 
+    <div class="left">
+        <h1>Now</h1>
+        <div class="center-box">
+            {{#logo}}
+            <div class="logo">
+                <img src="{{logo}}" alt="">
+            </div>
+            {{/logo}}
+            <div class="time">
+                {{start}} - {{end}}
+            </div>
+        </div>
     </div>
-    <!-- right -->
-    <div class="reservations-right">
-        <div class="reservations-header">
-            <h1>{{company}}</h1>
+
+    <div class="right">
+        <h1>{{company}}</h1>
+        <h3>By: <span class="bold">{{booker}}</span></h3>
+        <div class="content">
             <h2>{{title}}</h2>
+            {{#description}}<p>{{description}}</p>{{/description}}
         </div>
-        <span class="booker"> Booked by: {{booker}}</span>
-        <p>{{description}}</p>
+        <div class="progress"></div>
     </div>
-    <!-- meeting progress -->
-    <div id="reservations-progress" class="progress">
-    </div>
-        <div class="bar" style="width: 60%;"></div>
-
-    <!--<script>
-        (function(){
-            var min = "{{start}}";
-            var max = "{{end}}";
-            var time_between = max - min;
-            var $progress = $("reservations-progress");
-            var done = false;
-
-            do{
-                if(new Date() < max){
-                    //var percentage =
-                    //$progress.find('.bar').css("width", percentage)
-                    window.setTimeout(function(){
-
-                    },1000)
-                }else{
-                    done = true;
-                }
-            }while(!done);
-        }());
-    </script>-->
 
 </div>
 {{/now}}
+
 {{#next}}
-<div id="reservations-next" class="clearfix">
-    <h1>Next</h1>
-    <!-- left -->
-    <div class="reservations-left">
-        <div class="logo">
-            <img src="{{logo}}"/>
+<div id="up-next">
+    <div class="left">
+        <h1>Next</h1>
+        <div class="center-box">
+            {{#logo}}
+            <div class="logo">
+                <img src="{{logo}}" alt="">
+            </div>
+            {{/logo}}
+            <div class="time">
+                {{start}} - {{end}}
+            </div>
         </div>
-        <span class="reservations-from-to">{{start}}h to {{end}}h</span>
     </div>
-    <!-- right -->
-    <div class="reservations-right">
+
+    <div class="right">
         <h1>{{company}}</h1>
-        <span class="subtitle">{{title}}</span>
-        <span class="booker"> Booked by: {{booker}}</span>
-        <h3>Description</h3>
-        <p>{{description}}</p>
+        <h3>By: <span class="bold">{{booker}}</span></h3>
+        <div class="content">
+            <h2>{{title}}</h2>
+            {{#description}}<p>{{description}}</p>{{/description}}
+        </div>
     </div>
 </div>
 {{/next}}

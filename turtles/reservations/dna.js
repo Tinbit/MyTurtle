@@ -42,11 +42,20 @@
 
             // only render when template file is loaded
             if (this.template) {
+                var date1 = new Date();
+                date1.setHours(13);
+                date1.setMinutes(0);
+                var date2 = new Date();
+                date2.setHours(13);
+                date2.setMinutes(10);
+                var date3 = new Date();
+                date3.setHours(14);
+                date3.setMinutes(0);
                 var data = {
                     now : {
                         "logo": "http://theadvancedapes.com/wp-content/uploads/2013/10/logo-google-astro-1.jpg",
-                        "start": "13",
-                        "end": "14",
+                        "start": date1.format("{H}:{M}"),
+                        "end": date2.format("{H}:{M}"),
                         "company": "Google",
                         "title": "Changing to kitkat",
                         "booker": "Larry Page",
@@ -54,8 +63,8 @@
                     },
                     next: {
                         "logo": "http://theadvancedapes.com/wp-content/uploads/2013/10/logo-google-astro-1.jpg",
-                        "start": "14",
-                        "end": "15",
+                        "start": date2.format("{H}:{M}"),
+                        "end": date3.format("{H}:{M}"),
                         "company": "Google",
                         "title": "About that change to kitkat",
                         "booker": "Larry Page",
@@ -66,6 +75,27 @@
                 // add html to container
                 this.$el.empty();
                 this.$el.html(Mustache.render(this.template, data));
+
+                //progress
+                console.log("starting progress");
+                console.log("date1: " + date1);
+                console.log("date2: " + date2);
+                console.log("date3: " + date3);
+                var currentDate = new Date();
+                currentDate.setHours(13);
+                currentDate.setMinutes(5);
+                var inbetween = date2 - date1;
+                console.log("inbetween: " + inbetween);
+                var current_pct = (currentDate-date1)/inbetween;
+                console.log("current pct: " + current_pct);
+                var timetogo=  date2 - currentDate;
+                console.log("timetogo: " + timetogo);
+                jQuery.fx.interval = 30000;
+                this.$el.find(".progress").stop().width(current_pct*100+"%");
+                this.$el.find(".progress").animate({width:"100%"}, parseInt(timetogo), "linear", function() {
+
+                    // change panes
+                })
             }
 
         }

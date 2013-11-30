@@ -1,68 +1,110 @@
 .reservations{
-    #reservations-now{
-        display: block;
-        height: 700px;
-
-        .reservations-header{
-            margin-bottom: 40px;
-        }
+    .left{
+        color: #dddddd;
+        display: table;
+        width: 40%;
+        padding: 20px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        float:left;
+        background-color: #222222;
+        height: 100%;
 
         h1{
-            margin-top:10px;
-            line-height: 3;
-            font-size: 3em;
-            margin-bottom: 10px;
+            float: left;
         }
 
         .logo{
+            width: 70%;
+            margin-left: 15%;
+            margin-right: 15%;
             text-align: center;
-            margin-top: 200px;
-            margin-bottom: 200px;
-            height: 300px;
-
-            span.reservations-from-to{
-                line-height: 1.5;
-                font-size: 1.5em;
-            }
         }
 
-        h2{
-            font-size: 2em;
-            line-height: 2em;
-            margin-bottom: 10px;
+        .time{
+            margin-left:auto;
+            margin-right: auto;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 40px;
         }
-
     }
 
-    #reservations-next{
-        display: block;
-        height: 300px;
-    }
-
-    .reservations-left,
-    .reservations-right{
-        float:left;
-        box-sizing: border-box;
-    }
-
-    .reservations-left{
-        width:40%;
-
-        .logo{
-            margin-left:25%;
-            margin-right:25%;
-            width:50%;
-
-            img{
-                max-width:100%;
-            }
-        }
-
-    }
-
-    .reservations-right{
-        padding:20px;
+    .right{
+        position: relative;
+        color: #454545;
+        display:table;
         width:60%;
-        border-left:1px solid #000;
+        float:left;
+        height: 100%;
+        padding:20px;
+        padding-top: 80px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        background-color: #f2f2f2;
+
+        h1{
+            font-size: 75px;
+            float:right;
+        }
+
+        .content h2{
+            margin-top: 30px;
+            font-size: 50px;
+            line-height: 50px;
+            /* other color */
+        }
+
+        h3{
+            margin-top: 60px;
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: normal;
+        }
+
+        .content p{
+            margin-top: 20px;
+        }
+    }
+
+    .logo img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .center-box{
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .table{
+        display: table;
+        clear: both;
+    }
+
+    #current{
+        width: 100%;
+        height:600px;
+    }
+
+    #up-next{
+        width: 100%;
+        height:400px;
+        border-top: 1px solid #444444;
+
+        .right{
+            padding-top: 20px;
+        }
+    }
+
+    .progress{
+        background-color: #d0e900;
+        height: 10px;
+        position: absolute;
+        top: 590px;
+        z-index: 99999;
+        margin-left: -20px;
     }
 }
