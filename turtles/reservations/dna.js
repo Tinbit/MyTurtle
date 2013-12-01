@@ -105,10 +105,16 @@
     // animate the progressbar on the current meeting
     function progressBar($el, min_date, max_date){
         var currentDate = new Date();
+
+        //don't start if current is smaller than min_date
+        if(currentDate < min_date){
+            return;
+        }
+
         var current_pct = (currentDate - min_date) / (max_date - min_date);
         var time_to_go =  max_date - currentDate;
 
-        //only update every 30 seconds
+        //only update every 5 seconds
         jQuery.fx.interval = 5000;
 
         $el.find(".progress").stop().width(current_pct*100+"%");

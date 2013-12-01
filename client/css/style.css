@@ -1446,19 +1446,20 @@ ul li {
 .widget .weekmenu .category .header {
   height: auto; }
 
-.reservations .left {
-  color: #dddddd;
-  display: table;
-  width: 40%;
-  padding: 20px;
-  box-sizing: border-box;
+.reservations .left,
+.reservations .right {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  float: left;
-  background-color: #222222;
-  height: 100%; }
+  box-sizing: border-box;
+  height: 100%;
+  float: left; }
+.reservations .left {
+  color: #dddddd;
+  width: 40%;
+  padding: 20px;
+  background-color: #222222; }
   .reservations .left h1 {
-    float: left; }
+    margin-top: 0px; }
   .reservations .left .logo {
     width: 90%;
     margin-left: 5%;
@@ -1469,26 +1470,19 @@ ul li {
     margin-right: auto;
     font-size: 30px;
     text-align: center;
-    margin-top: 40px; }
+    margin-top: 30px; }
 .reservations .right {
   position: relative;
   color: #454545;
-  display: table;
   width: 60%;
-  float: left;
-  height: 100%;
   padding: 0 20px;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   background-color: #f2f2f2; }
   .reservations .right h1 {
     font-size: 75px; }
   .reservations .right h2 {
     margin-top: 20px;
     font-size: 50px;
-    line-height: 50px;
-    /* other color */ }
+    line-height: 50px; }
   .reservations .right h3 {
     margin-top: 10px;
     font-size: 25px;
@@ -1498,25 +1492,20 @@ ul li {
     margin-top: 20px; }
 .reservations .logo img {
   max-width: 100%; }
-.reservations .center-box {
-  display: table-cell;
-  vertical-align: middle; }
-.reservations .table {
-  display: table;
-  clear: both; }
+.reservations #current,
+.reservations #up-next {
+  width: 100%; }
 .reservations #current {
-  width: 100%;
   height: 700px; }
   .reservations #current .left .logo img {
     max-height: 580px; }
   .reservations #current .right {
     padding-top: 120px; }
 .reservations #up-next {
-  width: 100%;
   height: 300px;
   border-top: 1px solid #444444; }
   .reservations #up-next .left .logo img {
-    max-height: 180px; }
+    max-height: 140px; }
   .reservations #up-next .right h1 {
     font-size: 50px; }
   .reservations #up-next .right h2 {
