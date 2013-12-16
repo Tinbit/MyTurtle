@@ -1,0 +1,91 @@
+{{#now}}
+<div id="current">
+
+    <div class="left">
+        {{#now}}
+        <div>
+            <h1>Now</h1>
+        </div>
+        <div class="display-table">
+            <div class="vertical-center">
+                <div class="logo">
+                    {{#logo}}<img src="{{logo}}" alt="">{{/logo}}
+                    {{^logo}}<img src="https://img.flatturtle.com/reservation/cbre.png" alt="">{{/logo}}
+                </div>
+                <div class="time">
+                    {{from_string}} - {{to_string}}
+                </div>
+            </div>
+        </div>
+        {{/now}}
+    </div>
+
+    <div class="right">
+        {{#now}}
+        <div class="display-table">
+            <div class="vertical-center">
+                {{#company}}<h1>{{company}}</h1>{{/company}}
+                <h2>{{subject}}</h2>
+                {{#booker}}<h3>Speakers: <span class="bold">{{booker}}</span></h3>{{/booker}}
+                {{#comment}}<p>{{comment}}</p>{{/comment}}
+
+                <div class="progress"></div>
+            </div>
+        </div>
+        {{/now}}
+
+    </div>
+</div>
+
+<div id="up-next">
+    <div class="left">
+        {{#next}}
+        <div>
+            <h1>Next</h1>
+        </div>
+        <div class="display-table">
+            <div class="vertical-center">
+                <div class="logo">
+                    {{#logo}}<img src="{{logo}}" alt="">{{/logo}}
+                    {{^logo}}<img src="https://img.flatturtle.com/reservation/cortenbergh.jpg" alt="">{{/logo}}
+                </div>
+                <div class="time">
+                    {{from_string}} - {{to_string}}
+                </div>
+            </div>
+        </div>
+        {{/next}}
+    </div>
+
+
+    <div class="right">
+        {{#next}}
+        <div class="display-table">
+            <div class="vertical-center">
+                {{#company}}<h1>{{company}}</h1>{{/company}}
+                <h2>{{subject}}</h2>
+                {{#booker}}<h3>Speakers: <span class="bold">{{booker}}</span></h3>{{/booker}}
+                {{#comment}}<p>{{comment}}</p>{{/comment}}
+            </div>
+        </div>
+        {{/next}}
+
+        {{#now}}
+        {{^next}}
+        <div class="message">
+            <div class="vertical-center">
+                <p>There are no upcoming reservations today.</p>
+            </div>
+        </div>
+        {{/next}}
+        {{/now}}
+    </div>
+</div>
+{{/now}}
+{{^now}}
+<div class="message">
+    <div class="vertical-center">
+        <p>The room is free!</p>
+    </div>
+</div>
+{{/now}}
