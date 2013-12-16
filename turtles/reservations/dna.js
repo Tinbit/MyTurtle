@@ -36,7 +36,7 @@
         },
         parse: function(json){
             if(json.length > 0){
-                var date_now = utcDate(new Date());
+                var date_now = new Date();
                 var futureReservations = [];
 
                 for(var i in json){
@@ -58,35 +58,38 @@
                     return 0;
                 });
 
-                var now = futureReservations[0];
-                // checks can be removed after companies are set in the api
-                if(now.customer && now.customer.company && now.customer.company in companies){
-                    now.logo = companies[now.customer.company];
-                }
-
-                now.from = utcDate(new Date(now.from));
-                now.from_string = now.from.format("{H}:{M}");
-                now.to = utcDate(new Date(now.to));
-                now.to_string = now.to.format("{H}:{M}");
-                now.booker = now.announce.join(", ");
+                var now = null;
                 var next = null;
-                if(futureReservations.length > 1){
-                    next = futureReservations[1];
-
+                if(futureReservations.length> 0){
+                    now = futureReservations[0];
                     // checks can be removed after companies are set in the api
-                    if(next.customer && next.customer.company && next.customer.company in companies){
-                        next.logo = companies[next.customer.company];
+                    if(now.customer && now.customer.company && now.customer.company in companies){
+                        now.logo = companies[now.customer.company];
                     }
-                    next.from = utcDate(new Date(next.from));
-                    next.from_string = next.from.format("{H}:{M}");
-                    next.to = utcDate(new Date(next.to));
-                    next.to_string = next.to.format("{H}:{M}");
-                    next.booker = next.announce.join(", ");
-                }
 
+                    now.from = utcDate(new Date(now.from));
+                    now.from_string = now.from.format("{H}:{M}");
+                    now.to = utcDate(new Date(now.to));
+                    now.to_string = now.to.format("{H}:{M}");
+                    now.booker = now.announce.join(", ");
+                    if(futureReservations.length > 1){
+                        next = futureReservations[1];
+
+                        // checks can be removed after companies are set in the api
+                        if(next.customer && next.customer.company && next.customer.company in companies){
+                            next.logo = companies[next.customer.company];
+                        }
+                        next.from = utcDate(new Date(next.from));
+                        next.from_string = next.from.format("{H}:{M}");
+                        next.to = utcDate(new Date(next.to));
+                        next.to_string = next.to.format("{H}:{M}");
+                        next.booker = next.announce.join(", ");
+                    }
+
+
+                }
                 this.options.now = now;
                 this.options.next = next;
-
             }
             this.trigger('render');
         },
@@ -134,7 +137,7 @@
 
                 if(now){
                     // progress
-                    progressBar(this.$el, now.from, now.to, this);
+                    progressBar(this.$el, now.from, now.to);
                 }
             }
 
@@ -142,8 +145,8 @@
     });
 
     // animate the progressbar on the current meeting
-    function progressBar($el, min_date, max_date, self){
-        var currentDate = utcDate(new Date());
+    function progressBar($el, min_date, max_date){
+        var currentDate = new Date();
 
         //don't start if current is smaller than min_date
         if(currentDate < min_date){
@@ -159,7 +162,7 @@
 
         $el.find(".progress").stop().width(current_pct*100+"%");
         $el.find(".progress").animate({width:"100%"}, parseInt(time_to_go), "linear", function() {
-            self.refresh();
+
         })
     }
 
