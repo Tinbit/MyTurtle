@@ -47,6 +47,16 @@
                     }
                 }
 
+                // sort the reservations on time
+                futureReservations.sort(function(a,b){
+                    a_date = new Date(a.from);
+                    b_date = new Date(b.from);
+                    if (a_date < b_date) return -1;
+                    if (a_date > b_date) return 1;
+
+                    // this should never happen!
+                    return 0;
+                });
 
                 var now = futureReservations[0];
                 // checks can be removed after companies are set in the api
