@@ -67,6 +67,9 @@
                         now.logo = companies[now.customer.company];
                     }
 
+                    if(now.comment.toLowerCase() == "no comment"){
+                        now.comment = "";
+                    }
                     now.from = utcDate(new Date(now.from));
                     now.from_string = now.from.format("{H}:{M}");
                     now.to = utcDate(new Date(now.to));
@@ -78,6 +81,9 @@
                         // checks can be removed after companies are set in the api
                         if(next.customer && next.customer.company && next.customer.company in companies){
                             next.logo = companies[next.customer.company];
+                        }
+                        if(next.comment.toLowerCase() == "no comment"){
+                            next.comment = "";
                         }
                         next.from = utcDate(new Date(next.from));
                         next.from_string = next.from.format("{H}:{M}");
