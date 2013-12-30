@@ -1,11 +1,5 @@
 (function($) {
 
-    // temp until companies and logos are linked
-    var companies = {
-        "CBRE" : "https://img.flatturtle.com/reservation/cbre.png",
-        "Statoil" : "https://img.flatturtle.com/reservation/statoil.png"
-    };
-
     /*
      * Collections are ordered sets of models. You can bind "change" events to
      * be notified when any model in the collection has been modified, listen
@@ -13,7 +7,7 @@
      */
     var collection = Backbone.Collection.extend({
         initialize : function(models, options) {
-            _.bindAll(this, "configure", "url", "parse", "refresh");
+            _.bindAll(this, "configure", "url", "parse", "refresh", "getLogo");
 
             this.bind("born", this.fetch);
             this.on("born", this.configure);
@@ -22,12 +16,25 @@
             var self = this;
 
             setTimeout(function(){
-                setInterval(self.refresh, 10000);
+                setInterval(self.refresh, 30000);
             },  Math.round(Math.random()*5000));
         },
         configure : function(){
+            //get companies
+            var url = this.options.url;
+            url = url.replace(url.substr(url.lastIndexOf('/things')), '');
+            url += "/companies";
 
-            //this.trigger("render");
+            $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+                    companies = data;
+                    console.log(data);
+                }
+            });
+            this.companies = companies;
         },
         url: function(){
             var url = this.options.url;
@@ -62,10 +69,8 @@
                 var next = null;
                 if(futureReservations.length> 0){
                     now = futureReservations[0];
-                    // checks can be removed after companies are set in the api
-                    if(now.customer && now.customer.company && now.customer.company in companies){
-                        now.logo = companies[now.customer.company];
-                    }
+
+                    this.getLogo(now.customer.company);
 
                     if(now.comment.toLowerCase() == "no comment"){
                         now.comment = "";
@@ -78,10 +83,8 @@
                     if(futureReservations.length > 1){
                         next = futureReservations[1];
 
-                        // checks can be removed after companies are set in the api
-                        if(next.customer && next.customer.company && next.customer.company in companies){
-                            next.logo = companies[next.customer.company];
-                        }
+                        next.logo = this.getLogo(next.customer.company);
+
                         if(next.comment.toLowerCase() == "no comment"){
                             next.comment = "";
                         }
@@ -102,6 +105,17 @@
         refresh: function(){
             var self = this;
             self.fetch();
+        },
+        getLogo: function(comp){
+            for(var index in this.companies){
+                var company = this.companies[index];
+                if(company.name == comp){
+                    return company.logo_url
+                }
+            }
+
+            //Fallback image when the company is not found
+            return "https://img.flatturtle.com/reservation/no-logo.png";
         }
 
     });
