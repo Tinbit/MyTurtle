@@ -13,6 +13,11 @@ Features
  * Add classes in the turtles directory and use them instantly
  * cronjobs
 
+Useful links
+============
+* [Installation](https://github.com/FlatTurtle/MyTurtle/blob/master/INSTALL.md#installation)
+* [Make your own](https://github.com/FlatTurtle/MyTurtle/blob/master/DEVELOPMENT.md#development)
+
 Tools used
 ==========
 
@@ -20,7 +25,6 @@ Tools used
  * Backbone.js
  * Later.js: for cronjobs when the code is ran on FlatOS (http://github.com/FlatTurtle/FlatOS) using the FlatTurtle browser (http://github.com/FlatTurtle/InfoScreenQT)
  * PHP5.3 with CodeIgniter prints the right configuration from the database as an initializer, and takes care of the URL structure. It does however not work as an API.
-
 
 License and copyrights
 ======================
