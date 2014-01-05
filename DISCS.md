@@ -1,44 +1,55 @@
 DISCS spec
 ==========
 
-```json
-{
+MyTurtle uses our DISCS (Digital infoscreen configuration specification) json. This json contains all the info the screen needs to configure its data sources and plugins.
+
+Sections
+--------
+
+1. Interface
+   
+    This part of the DISCS contains all the information about the infoscreen.
+    ```json
     "interface": {
-        "group": null,
-        "title": "DemoTurtle",
-        "alias": "demo",
-        "hostname": "rpi-032113",
-        "version": "testing",
-        "logo": "https://my.flatturtle.com/uploads/demo/logo.png",
-        "color": "#10db31",
-        "lang": null,
-        "location": "Pleinlaan 9 1050 Brussels",
-        "latitude": "50.8206579",
-        "longitude": "4.3923785",
-        "wifi": "none",
-        "hide_ft_logo": "0",
-        "allow_whitelabel": "0",
-        "disable_left": "0",
-        "disable_right": "0"
-    },
+            "group": null,
+            "title": "DemoTurtle",
+            "alias": "demo",
+            "hostname": "rpi-032113",
+            "version": "testing",
+            "logo": "https://my.flatturtle.com/uploads/demo/logo.png",
+            "color": "#10db31",
+            "lang": null,
+            "location": "Pleinlaan 9 1050 Brussels",
+            "latitude": "50.8206579",
+            "longitude": "4.3923785",
+            "wifi": "none",
+            "hide_ft_logo": "0",
+            "allow_whitelabel": "0",
+            "disable_left": "0",
+            "disable_right": "0"
+        }
+    ```
+2. Plugins
+
+    Our Infoscreens can make use of plugins. This way special behavior can be created and handled. The included plugins can be found in `/src/js/plugins/`. 
+    
+    ```json
     "plugins": {
         "footer_type": "none",
         "footer": " ",
         "clock": "1",
         "power": "1",
         "masterpower": "0"
-    },
+    }
+    ```
+3. Turtles
+
+    The turtles section is arguably the most important part of the DISCS. Here all the turtles that will be shown on the screen are defined together with their turtle specific options.
+    
+    There are `list` turtles and `widget` turtles. [TODO]
+    
+    ```json
     "turtles": {
-        "317": {
-            "order": "0",
-            "name": "Map",
-            "type": "map",
-            "options": {
-                "location": "",
-                "zoom": "12"
-            },
-            "pane": "135"
-        },
         "1012": {
             "order": "3",
             "name": "NMBS",
@@ -73,16 +84,6 @@ DISCS spec
             },
             "pane": "35"
         },
-        "1069": {
-            "order": "1",
-            "name": "Calendar",
-            "type": "calendar",
-            "options": {
-                "url": "http://www.google.com/calendar/ical/smitresearch.be_2d31363433343139332d313639@resource.calendar.google.com/private-035cef7db9362557e6e53e08a9f0e3f6/basic.ics",
-                "header": "Test calendar"
-            },
-            "pane": "504"
-        },
         "1071": {
             "order": "1",
             "name": "Villo",
@@ -113,27 +114,14 @@ DISCS spec
                 "limit": "6"
             },
             "pane": "505"
-        },
-        "1075": {
-            "order": "0",
-            "name": "Info",
-            "type": "info",
-            "options": {
-                "data": "<h1><b>Welkom op iMinds Brussel</b></h1>azdazdzad<br><br>"
-            },
-            "pane": "507"
-        },
-        "1076": {
-            "order": "0",
-            "name": "Image",
-            "type": "image",
-            "options": {
-                "urls": "[\"https://my.flatturtle.com/uploads/slideshow_images/demo/1076/1387463484_249-portrait.png\",\"https://my.flatturtle.com/uploads/slideshow_images/demo/1076/1387463570_6991-portrait.png\"]",
-                "duration": "5000"
-            },
-            "pane": "508"
         }
-    },
+    }
+    ```
+4. Panes
+
+    The panes are the containers for the turtles. Multiple turtles can reside in one pane. The order of the panes and the duration before they get switched out is defined for each pane.
+    
+    ```json
     "panes": {
         "35": {
             "type": "list",
@@ -184,5 +172,18 @@ DISCS spec
             "order": "0"
         }
     }
+    ```
+
+All together
+------------
+
+All these sections brought together gives:
+
+```json
+{
+    "interface": { },
+    "plugins": { },
+    "turtles": { },
+    "panes": { }
 }
 ```
