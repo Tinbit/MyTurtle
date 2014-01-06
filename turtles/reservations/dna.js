@@ -31,7 +31,6 @@
                 dataType: 'json',
                 success: function(data) {
                     companies = data;
-                    console.log(data);
                 }
             });
             this.companies = companies;
@@ -49,7 +48,8 @@
                 for(var i in json){
                     var reservation = json[i];
                     var from = new Date(reservation.to);
-                    if(from > date_now){
+
+                    if(from > date_now && parseInt(reservation.activated)){
                         futureReservations.push(reservation);
                     }
                 }
@@ -109,9 +109,7 @@
         getLogo: function(comp){
             for(var index in this.companies){
                 var company = this.companies[index];
-                console.log(company);
                 if(company.name == comp){
-                    console.log(company.logo_url);
                     return company.logo_url
                 }
             }
