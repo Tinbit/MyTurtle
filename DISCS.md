@@ -14,7 +14,7 @@ Sections
             "group": null,
             "title": "DemoTurtle",
             "alias": "demo",
-            "hostname": "rpi-032113",
+            "hostname": "rpi-012345",
             "version": "testing",
             "logo": "https://my.flatturtle.com/uploads/demo/logo.png",
             "color": "#10db31",
