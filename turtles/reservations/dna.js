@@ -48,7 +48,7 @@
 
                 for(var i in json){
                     var reservation = json[i];
-                    var from = utcDate(new Date(reservation.to));
+                    var from = new Date(reservation.to);
                     if(from > date_now){
                         futureReservations.push(reservation);
                     }
@@ -75,9 +75,9 @@
                     if(now.comment.toLowerCase() == "no comment"){
                         now.comment = "";
                     }
-                    now.from = utcDate(new Date(now.from));
+                    now.from = new Date(now.from);
                     now.from_string = now.from.format("{H}:{M}");
-                    now.to = utcDate(new Date(now.to));
+                    now.to = new Date(now.to);
                     now.to_string = now.to.format("{H}:{M}");
                     now.booker = now.announce.join(", ");
                     if(futureReservations.length > 1){
@@ -88,9 +88,9 @@
                         if(next.comment.toLowerCase() == "no comment"){
                             next.comment = "";
                         }
-                        next.from = utcDate(new Date(next.from));
+                        next.from = new Date(next.from);
                         next.from_string = next.from.format("{H}:{M}");
-                        next.to = utcDate(new Date(next.to));
+                        next.to = new Date(next.to);
                         next.to_string = next.to.format("{H}:{M}");
                         next.booker = next.announce.join(", ");
                     }
@@ -186,10 +186,6 @@
         $el.find(".progress").animate({width:"100%"}, parseInt(time_to_go), "linear", function() {
 
         })
-    }
-
-    function utcDate(date){
-        return new Date(date.getTime() /*+ (date.getTimezoneOffset() * 60000)*/);
     }
 
     // register turtle
