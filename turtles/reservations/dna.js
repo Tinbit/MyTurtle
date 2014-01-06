@@ -70,7 +70,7 @@
                 if(futureReservations.length> 0){
                     now = futureReservations[0];
 
-                    this.getLogo(now.customer.company);
+                    now.logo = this.getLogo(now.customer.company);
 
                     if(now.comment.toLowerCase() == "no comment"){
                         now.comment = "";
@@ -109,7 +109,9 @@
         getLogo: function(comp){
             for(var index in this.companies){
                 var company = this.companies[index];
+                console.log(company);
                 if(company.name == comp){
+                    console.log(company.logo_url);
                     return company.logo_url
                 }
             }
@@ -187,7 +189,7 @@
     }
 
     function utcDate(date){
-        return new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
+        return new Date(date.getTime() /*+ (date.getTimezoneOffset() * 60000)*/);
     }
 
     // register turtle
