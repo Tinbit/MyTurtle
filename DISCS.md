@@ -1,7 +1,7 @@
 DISCS spec
 ==========
 
-MyTurtle uses our DISCS (Digital infoscreen configuration specification) json. This json contains all the info the screen needs to configure its data sources and plugins.
+MyTurtle uses our DISCS (Digital InfoScreen Configuration Specification) json. This json contains all the info the screen needs to configure its data sources and plugins.
 
 Sections
 --------
