@@ -47,17 +47,20 @@
 
                 for(var i in json){
                     var reservation = json[i];
-                    var from = new Date(reservation.to);
-
+                    var from = dateFromString(reservation.to);
+                    console.log(from.toDateString());
+                    console.log(date_now.toDateString());
+                    console.log(from>date_now);
                     if(from > date_now && parseInt(reservation.activated)){
                         futureReservations.push(reservation);
                     }
                 }
 
+                console.log(futureReservations);
                 // sort the reservations on time
                 futureReservations.sort(function(a,b){
-                    a_date = new Date(a.from);
-                    b_date = new Date(b.from);
+                    a_date = dateFromString(a.from);
+                    b_date = dateFromString(b.from);
                     if (a_date < b_date) return -1;
                     if (a_date > b_date) return 1;
 
@@ -75,9 +78,9 @@
                     if(now.comment.toLowerCase() == "no comment"){
                         now.comment = "";
                     }
-                    now.from = new Date(now.from);
+                    now.from = dateFromString(now.from);
                     now.from_string = now.from.format("{H}:{M}");
-                    now.to = new Date(now.to);
+                    now.to = dateFromString(now.to);
                     now.to_string = now.to.format("{H}:{M}");
                     now.booker = now.announce.join(", ");
                     if(futureReservations.length > 1){
@@ -88,9 +91,9 @@
                         if(next.comment.toLowerCase() == "no comment"){
                             next.comment = "";
                         }
-                        next.from = new Date(next.from);
+                        next.from = dateFromString(next.from);
                         next.from_string = next.from.format("{H}:{M}");
-                        next.to = new Date(next.to);
+                        next.to = dateFromString(next.to);
                         next.to_string = next.to.format("{H}:{M}");
                         next.booker = next.announce.join(", ");
                     }
@@ -110,7 +113,7 @@
             for(var index in this.companies){
                 var company = this.companies[index];
                 if(company.name == comp){
-                    return company.logo_url
+                    return company.logo_url;
                 }
             }
 
@@ -184,6 +187,11 @@
         $el.find(".progress").animate({width:"100%"}, parseInt(time_to_go), "linear", function() {
 
         })
+    }
+
+    // creating date from string, only chrome supports this directly in the constructor
+    function dateFromString(d){
+        return new Date(d.substr(0, 4), d.substr(5, 2) - 1, d.substr(8, 2), d.substr(11, 2), d.substr(14, 2), d.substr(17, 2));
     }
 
     // register turtle
