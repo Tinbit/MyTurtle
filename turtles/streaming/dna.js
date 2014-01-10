@@ -41,6 +41,17 @@
 					self.$el.addClass('nopadding');
 					self.$el.html(Mustache.render(template, data));
 				});
+			break;
+			case 'aljazeera':
+				$.get('turtles/streaming/views/aljazeera.html', function(template) {
+					var data = {
+					};
+					self.$el.empty();
+					self.$el.height('100%');
+					self.$el.addClass('nopadding');
+					self.$el.html(Mustache.render(template, data));
+				});
+			break;
 			default:
 				log.error("TURTLE - STREAMING - Unknown streaming service");
 			}
