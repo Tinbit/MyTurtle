@@ -52,6 +52,18 @@
 					self.$el.html(Mustache.render(template, data));
 				});
 			break;
+            case 'rtmp':
+                $.get('turtles/streaming/views/rtmp.html', function(template) {
+                    var data = {
+                        stream  : self.options.stream,
+                        videoid : self.options.videoid 
+                    };
+                    self.$el.empty();
+                    self.$el.height('100%');
+                    self.$el.addClass('nopadding');
+                    self.$el.html(Mustache.render(template, data));
+                });
+            break;
 			default:
 				log.error("TURTLE - STREAMING - Unknown streaming service");
 			}
