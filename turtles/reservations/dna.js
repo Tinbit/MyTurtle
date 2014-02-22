@@ -1,11 +1,5 @@
 (function($) {
 
-    // temp until companies and logos are linked
-    var companies = {
-        "CBRE" : "https://img.flatturtle.com/reservation/cbre.png",
-        "Statoil" : "https://img.flatturtle.com/reservation/statoil.png"
-    };
-
     /*
      * Collections are ordered sets of models. You can bind "change" events to
      * be notified when any model in the collection has been modified, listen
@@ -13,7 +7,7 @@
      */
     var collection = Backbone.Collection.extend({
         initialize : function(models, options) {
-            _.bindAll(this, "configure", "url", "parse", "refresh");
+            _.bindAll(this, "configure", "url", "parse", "refresh", "getLogo");
 
             this.bind("born", this.fetch);
             this.on("born", this.configure);
@@ -22,12 +16,24 @@
             var self = this;
 
             setTimeout(function(){
-                setInterval(self.refresh, 10000);
+                setInterval(self.refresh, 30000);
             },  Math.round(Math.random()*5000));
         },
         configure : function(){
+            //get companies
+            var url = this.options.url;
+            url = url.replace(url.substr(url.lastIndexOf('/things')), '');
+            url += "/companies";
 
-            //this.trigger("render");
+            $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+                    companies = data;
+                }
+            });
+            this.companies = companies;
         },
         url: function(){
             var url = this.options.url;
@@ -41,16 +47,20 @@
 
                 for(var i in json){
                     var reservation = json[i];
-                    var from = utcDate(new Date(reservation.to));
-                    if(from > date_now){
+                    var from = dateFromString(reservation.to);
+                    console.log(from.toDateString());
+                    console.log(date_now.toDateString());
+                    console.log(from>date_now);
+                    if(from > date_now && parseInt(reservation.activated)){
                         futureReservations.push(reservation);
                     }
                 }
 
+                console.log(futureReservations);
                 // sort the reservations on time
                 futureReservations.sort(function(a,b){
-                    a_date = new Date(a.from);
-                    b_date = new Date(b.from);
+                    a_date = dateFromString(a.from);
+                    b_date = dateFromString(b.from);
                     if (a_date < b_date) return -1;
                     if (a_date > b_date) return 1;
 
@@ -62,32 +72,28 @@
                 var next = null;
                 if(futureReservations.length> 0){
                     now = futureReservations[0];
-                    // checks can be removed after companies are set in the api
-                    if(now.customer && now.customer.company && now.customer.company in companies){
-                        now.logo = companies[now.customer.company];
-                    }
+
+                    now.logo = this.getLogo(now.customer.company);
 
                     if(now.comment.toLowerCase() == "no comment"){
                         now.comment = "";
                     }
-                    now.from = utcDate(new Date(now.from));
+                    now.from = dateFromString(now.from);
                     now.from_string = now.from.format("{H}:{M}");
-                    now.to = utcDate(new Date(now.to));
+                    now.to = dateFromString(now.to);
                     now.to_string = now.to.format("{H}:{M}");
                     now.booker = now.announce.join(", ");
                     if(futureReservations.length > 1){
                         next = futureReservations[1];
 
-                        // checks can be removed after companies are set in the api
-                        if(next.customer && next.customer.company && next.customer.company in companies){
-                            next.logo = companies[next.customer.company];
-                        }
+                        next.logo = this.getLogo(next.customer.company);
+
                         if(next.comment.toLowerCase() == "no comment"){
                             next.comment = "";
                         }
-                        next.from = utcDate(new Date(next.from));
+                        next.from = dateFromString(next.from);
                         next.from_string = next.from.format("{H}:{M}");
-                        next.to = utcDate(new Date(next.to));
+                        next.to = dateFromString(next.to);
                         next.to_string = next.to.format("{H}:{M}");
                         next.booker = next.announce.join(", ");
                     }
@@ -102,6 +108,17 @@
         refresh: function(){
             var self = this;
             self.fetch();
+        },
+        getLogo: function(comp){
+            for(var index in this.companies){
+                var company = this.companies[index];
+                if(company.name == comp){
+                    return company.logo_url;
+                }
+            }
+
+            //Fallback image when the company is not found
+            return "https://img.flatturtle.com/reservation/no-logo.png";
         }
 
     });
@@ -172,8 +189,9 @@
         })
     }
 
-    function utcDate(date){
-        return new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
+    // creating date from string, only chrome supports this directly in the constructor
+    function dateFromString(d){
+        return new Date(d.substr(0, 4), d.substr(5, 2) - 1, d.substr(8, 2), d.substr(11, 2), d.substr(14, 2), d.substr(17, 2));
     }
 
     // register turtle
