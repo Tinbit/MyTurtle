@@ -14,6 +14,9 @@
             // prevents loss of "this" inside methods
             _.bindAll(this, "refresh");
 
+            this.on("refresh", this.refresh);
+            this.on("reconfigure", this.render);
+
             // render immediately
             this.render();
         },
