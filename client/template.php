@@ -20,7 +20,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>InfoScreen</title>
+        <title>FlatTurtle InfoScreen</title>
         <meta name="description" content="MyTurtle">
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
