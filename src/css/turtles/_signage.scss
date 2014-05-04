@@ -1,9 +1,14 @@
+
+.turtle.signage {
+    padding: 10px 3%;
+}
+
 .floor {
     width: 92%;
     padding: 16px 4% 16px 4%;
     min-height: 80px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     display: block;
     font-size: 2.9em;
 
@@ -41,10 +46,6 @@
         font-size: 0.6em;
         line-height: 0.6em;
         width: 70%;
-
-        span{
-            padding-left: 30%;
-        }
 
         div.bg{
             position: absolute;
