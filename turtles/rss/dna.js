@@ -1,5 +1,6 @@
 /*
  * FlatTurtle
+ * @author: Johan Dams (johan.dams@wrdsystems.co.uk)
  * @author: Jens Segers (jens@irail.be)
  * @author: Michiel Vancoillie (michiel@irail.be)
  * @author: Pieter Colpaert (pieter@flatturtle.com)
@@ -11,30 +12,27 @@
     var collection = Backbone.Collection.extend({
         initialize : function(models, options) {
             var self = this;
+	    this.options = options;
+
             log.debug("TURTLE - RSS - Initialize");
             // prevents loss of "this" inside methods
             _.bindAll(this, "refresh");
 
-            //load google feed API
-            $.getScript("//www.google.com/jsapi", function(){
-                google.load("feeds", "1", {'callback':function(){
-                    // default error value
-                    options.error = false;
-                    // default limit
-                    if (!options.limit)
-                        options.limit = 5;
+	    // default error value
+	    options.error = false;
+	
+	    // default limit
+	    if (!options.limit)
+		options.limit = 5;
+	    
+            setTimeout(function(){
+		refreshInterval = setInterval(self.refresh, 480000);
+	    }, Math.round(Math.random()*5000));
 
-                    // automatic collection refresh each 4 minutes, this will
-                    // trigger the reset event
-                    setTimeout(function(){
-                        refreshInterval = setInterval(self.refresh, 480000);
-                    }, Math.round(Math.random()*5000));
-                    self.refresh();
-                }});
-            });
             // fetch data when born
             this.on("refresh", this.refresh);
             this.on("reconfigure", this.refresh);
+            self.refresh();
         },
         refresh : function() {
             log.debug("TURTLE - RSS - Refresh");
@@ -44,10 +42,11 @@
 
             var self = this;
 
-            var feed = new google.feeds.Feed(this.options.feed);
-            feed.load(function(result) {
+            var feed = ["https://data.flatturtle.com/rsstojson.php?url=", this.options.feed];
+
+	    $.getJSON(feed.join(""),function(result){
                 if (!result.error) {
-                    self.json = result.feed;
+                    self.json = result;
                     self.parse();
                     self.trigger("reset");
                 }else{
@@ -69,13 +68,15 @@
 
             var entries = new Object();
             var json = this.json;
+	    
             try{
                 this.options.source = json.title;
                 var items = json.entries.slice(0, this.options.limit - 1);
+	
+                for (var i in items) {    
 
-                for (var i in items) {
-                    var time = new Date(items[i].publishedDate);
-                    items[i].time = time.format("{d}/{m}/{y} {H}:{M}");
+                    //var time = new Date(items[i].publishedDate);
+                    //items[i].time = time.format("{d}, {m}/{y} {H}:{M}");
                     // Determine type
                     if(items[i].enclosure && items[i].enclosure.href != null && !items[i].summary){
                         entries.type_images = true;
