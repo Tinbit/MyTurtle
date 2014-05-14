@@ -27,7 +27,16 @@
             if(!this.options.urls){
                 // TODO: show error
             }else{
-                this.options.images = JSON.parse(this.options.urls);
+                this.options.images_portrait = JSON.parse(this.options.urls);
+		
+		this.options.images_landscape = JSON.parse(this.options.urls);
+		for(var i=0;  i<this.options.images_landscape.length; i++){
+			this.options.images_landscape[i] = this.options.images_landscape[i].replace("portrait", "landscape");
+		}
+
+		/* portrait by default - check landscape later */
+		this.options.images = this.options.images_portrait;
+               
             }
 
             this.trigger("render");
@@ -79,6 +88,15 @@
                 // add html to container
                 this.$el.empty();
                 this.$el.html(Mustache.render(this.template, data));
+		
+		/* Find out if we are full screen, and change data accordingly */
+		var width = $("#slide_viewport").width();
+		if(width > 1100)
+			data.images = this.options.images_landscape;
+		else
+			data.images = this.options.images_portrait;
+
+		this.$el.html(Mustache.render(this.template, data));
 
                 // set the first active slide
                 this.$el.find('.slide:nth-child(1)').addClass('active');
