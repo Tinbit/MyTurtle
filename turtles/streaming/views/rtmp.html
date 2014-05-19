@@ -1,26 +1,27 @@
-<script src="turtles/streaming/views/flowplayer-3.2.13.min.js"></script>
+<link rel="stylesheet" href="turtles/streaming/views/minimalist.css">
+<script src="turtles/streaming/views/jquery-1.11.0.min.js"></script> 
+<script src="turtles/streaming/views/flowplayer.min.js"></script>
 
-<div id="videocanvas" style="width: 100%; height: 100%; position:relative;"></div>
+<div id="videocanvas" style="width: 100%; height: 100%; position:relative;">
+    <div id="fp" class="flowplayer play-button fixed-controls" data-ratio="0.417">   
+        <video autoplay>
+            <source type="video/flash" src="{{{videoid}}}">
+        </video>
+    </div>
+</div>
 
 <script>
-flowplayer("videocanvas", "turtles/streaming/views/flowplayer-3.2.18.swf", {
+flowplayer.conf = {
+  live: true, // mandatory with live streams
+  rtmp: "rtmp://{{{stream}}}",
+  // work around a bug in the flash engine regarding live streams
+  swf: "turtles/streaming/views/flowplayer.swf"
+};
 
-    clip: {
-        autoPlay: true,
-        url: '{{videoid}}',
-        scaling: 'fit',
-        provider: 'flatturtle'
-    },
-
-    plugins: {
-        flatturtle: {
-            url: "turtles/streaming/views/flowplayer.rtmp-3.2.13.swf",
-            netConnectionUrl: 'rtmp://{{stream}}'
-        }
-    },
-    canvas: {
-        backgroundGradient: 'none'
-    }
+flowplayer(function (api) {
+  api.bind("load", function (e, api, video) {
+    $("#vtype").text(video.type);
+  });
 });
 </script>
 
@@ -28,5 +29,10 @@ flowplayer("videocanvas", "turtles/streaming/views/flowplayer-3.2.18.swf", {
 #videocanvas{
     background: black;
 }
+
+#fp{
+    margin-top: 25%;
+}
+
 </style>
 
