@@ -61,7 +61,8 @@ window.Screen = (function() {
         log.info(" Start adding plugins");
         for (var name in config.plugins) {
             // try uppercase or lowercase
-            if (window[name] == null) {
+            // Some elements may exist in the DOM (i.e., clock/Clock), so check if the potential plugin has an enable() function
+            if (window[name] == null || typeof window[name.enable] != 'function') {
                 var plugin = window[name.charAt(0).toUpperCase() + name.slice(1)];
             } else {
                 var plugin = window[name];
