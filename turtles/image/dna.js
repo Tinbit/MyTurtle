@@ -29,14 +29,18 @@
             }else{
                 this.options.images_portrait = JSON.parse(this.options.urls);
 		
-		this.options.images_landscape = JSON.parse(this.options.urls);
-		for(var i=0;  i<this.options.images_landscape.length; i++){
-			this.options.images_landscape[i] = this.options.images_landscape[i].replace("portrait", "landscape");
-		}
+		        this.options.images_landscape = JSON.parse(this.options.urls);
+		        for(var i=0;  i<this.options.images_landscape.length; i++){
+			        this.options.images_landscape[i] = this.options.images_landscape[i].replace("portrait", "landscape");
+		        }
 
-		/* portrait by default - check landscape later */
-		this.options.images = this.options.images_portrait;
-               
+                this.options.images_tall = JSON.parse(this.options.urls);
+                for(var i=0;  i<this.options.images_tall.length; i++){
+                    this.options.images_tall[i] = this.options.images_tall[i].replace("portrait", "tall");
+                }
+
+		        /* portrait by default - check landscape later */
+		        this.options.images = this.options.images_portrait;
             }
 
             this.trigger("render");
@@ -89,11 +93,14 @@
                 this.$el.empty();
                 this.$el.html(Mustache.render(this.template, data));
 		
-		/* Find out if we are full screen, and change data accordingly */
+		/* Find out if we are full screen (and how), and change data accordingly */
 		var width = $("#slide_viewport").width();
+        var height = $("#slide_viewport").height();
 		if(width > 1100)
 			data.images = this.options.images_landscape;
-		else
+		else if(height > 1100)
+            data.images = this.options.images_tall;
+        else
 			data.images = this.options.images_portrait;
 
 		this.$el.html(Mustache.render(this.template, data));
