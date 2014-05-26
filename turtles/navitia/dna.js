@@ -176,21 +176,23 @@
         {
             // only render when template file is loaded
             if (this.template) {
-
+               
                 var entries = this.collection.toJSON();
-                entries.length = this.options.limit;
+                if(entries.length > 0){
+                    entries.length = this.options.limit;
 
-                var data = {
-                    location: this.options.location,
-                    type: this.options.icon,
-                    entries: entries,
-                    empty: this.collection.length == 0,
-                    underConstruction: this.options.stop_point == 'stop_point:RTF:SP:BAGNE1' 
-                };
+                    var data = {
+                        location: this.options.location,
+                        type: this.options.icon,
+                        entries: entries,
+                        empty: this.collection.length == 0,
+                        underConstruction: this.options.stop_point == 'stop_point:RTF:SP:BAGNE1' 
+                    };
 
-                // add html to container
-                this.$el.empty();
-                this.$el.html(Mustache.render(this.template, data));
+                    // add html to container
+                    this.$el.empty();
+                    this.$el.html(Mustache.render(this.template, data));
+                }
             }        
         },
     });
