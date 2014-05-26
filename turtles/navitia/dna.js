@@ -82,10 +82,9 @@
         },
         parse : function(json)
         {
-            log.error(json.departures);
             var liveboard = json.departures;
             var lines = new Array();
-
+          
             for (var i in liveboard)
             {
             	// set lng lat
@@ -177,10 +176,14 @@
         {
             // only render when template file is loaded
             if (this.template) {
+
+                var entries = this.collection.toJSON();
+                entries.length = this.options.limit;
+
                 var data = {
                     location: this.options.location,
                     type: this.options.icon,
-                    entries: this.collection.toJSON(),
+                    entries: entries,
                     empty: this.collection.length == 0,
                     underConstruction: this.options.stop_point == 'stop_point:RTF:SP:BAGNE1' 
                 };
