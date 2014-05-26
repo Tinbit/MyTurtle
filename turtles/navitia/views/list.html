@@ -1,15 +1,24 @@
 <div class="header">
     <i class={{type}}></i>
     <h2>{{location}}</h2>
+    <h4>NAVITIA</h4>
+        <div class="distance">
+            <p></p>
+        </div>
 </div>
 <div class="results">
     <ul>
         {{#entries}}
         <li>
-            <div class="square" style="background-color: #{{route.line.color}}">
-                <p>{{route.line.code}}</p>
+            <div>
+                <div class="square" style="background-color: #{{route.line.color}}">
+                    <p>{{route.line.code}}</p>
+                </div>
+                <div class="square">
+                    <i class="{{type}}"></i>
+                </div>
+                <h3>{{route.line.name}}</h3>
             </div>
-            <h3>{{route.line.name}}</h3>
             <div class="time">
                 <p>{{time}}</p>
             </div>
