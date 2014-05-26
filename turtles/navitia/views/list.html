@@ -1,0 +1,25 @@
+<div class="header">
+    <i class={{type}}></i>
+    <h2>{{location}}</h2>
+</div>
+<div class="results">
+    <ul>
+        {{#entries}}
+        <li>
+            <div class="square" style="background-color: #{{route.line.color}}">
+                <p>{{route.line.code}}</p>
+            </div>
+            <h3>{{route.line.name}}</h3>
+            <div class="time">
+                <p>{{time}}</p>
+            </div>
+        </li>
+        {{/entries}}
+        {{#error}}
+        <li class='error'>
+            <span class='message'>No connections</span>
+        </li>
+        {{/error}}
+    </ul>
+</div>
+
