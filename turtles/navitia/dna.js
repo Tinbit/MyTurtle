@@ -5,17 +5,38 @@
     {
         initialize : function(models, options)
         {
+            log.debug("TURTLE - NAVITIA - Initialize");
+            _.bindAll(this, "refresh", "configure");
+
+            this.on("born", this.configure);
+            this.on("born", this.refresh);
+            this.on("refresh", this.refresh);
+            this.on("reconfigure", this.configure);
+
             // default limit
             if (!options.limit)
             {
                 options.limit = 5;
             }
 
+            // default error value
+            options.error = false;
+
             this.options = options;
             var self = this;
 
+            // automatic collection refresh each minute, this will
+            // trigger the reset event
+            setTimeout(function(){
+                refreshInterval = setInterval(self.refresh, 60000);
+            }, Math.round(Math.random()*5000));
+
+    },
+    configure : function(){
+            log.debug("TURTLE - NAVITIA - Configure"); 
+            var self = this;
             // stop point mode
-            if (options.stop_point)
+            if (this.options.stop_point != "")
             {
                 $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_points/" + this.options.stop_point, function(data)
                 {
@@ -29,7 +50,7 @@
             }
 
             // stop area mode
-            else if (options.stop_area)
+            else if (this.options.stop_area != "")
             {
                 $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area, function(data)
                 {
@@ -45,7 +66,7 @@
             // search mode
             else
             {
-                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/places?q=" + encodeURIComponent(options.location) + "&type[]=stop_area&count=1", function(data)
+                $.getJSON("https://api.navitia.io/v1/coverage/" + this.options.region + "/places?q=" + encodeURIComponent(this.options.location) + "&type[]=stop_area&count=1", function(data)
                 {
                     self.options.stop_area = data.places[0].stop_area.id;
                     self.options.latitude = parseFloat(data.places[0].stop_area.coord.lat);
@@ -56,14 +77,25 @@
                 });
             }
 
-            // automatic collection refresh each minute, this will
-            // trigger the reset event
-            setTimeout(function(){
-                refreshInterval = setInterval(self.refresh, 60000);
-            }, Math.round(Math.random()*5000));
         },
+        refresh : function(){
+            log.debug("TURTLE - NAVITIA - Refresh");
+            var self = this;
+            self.fetch({
+                error : function() {
+                    // will allow the view to detect errors
+                    self.options.error = true;
+                    
+                    // if there are no previous items to show, display error message
+                    if(self.length == 0)
+                        self.trigger("reset");
+                }
+            });
+        },
+
         url : function()
         {
+            log.debug("TURTLE - NAVITIA - Create URL");
             var d = new Date;
             var query = d.format("{Y}{m}{d}T{H}{M}{S}");
 
@@ -77,11 +109,15 @@
             }
             else
             {
+                if(this.options.stop_area == "")
+                    return "https://api.navitia.io/v1/coverage/" + this.options.region;
                 return "https://api.navitia.io/v1/coverage/" + this.options.region + "/stop_areas/" + this.options.stop_area + "/departures?from_datetime=" + query;
             }
         },
+
         parse : function(json)
         {
+            log.info("TURTLE - NAVITIA - Parse results");
             var liveboard = json.departures;
             var lines = new Array();
           
