@@ -2,9 +2,13 @@
     <i class={{type}}></i>
     <h2>{{location}}</h2>
     <h4>NAVITIA</h4>
+    {{#time_walk}}
         <div class="distance">
-            <p></p>
+            <p>
+                <i class="foot"></i>{{time_walk}}
+            </p>
         </div>
+    {{/time_walk}}
 </div>
 <div class="results">
     <ul>

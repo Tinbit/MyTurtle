@@ -35,6 +35,14 @@
     configure : function(){
             log.debug("TURTLE - NAVITIA - Configure"); 
             var self = this;
+
+            // Walking time
+            if(this.options.time_walk >= 0){
+                this.options.time_walk = formatTime(this.options.time_walk);
+                this.trigger("reset");
+            }else{
+                this.options.time_walk = false;
+            }
             // stop point mode
             if (this.options.stop_point != "")
             {
@@ -221,6 +229,7 @@
                         location: this.options.location,
                         type: this.options.icon,
                         entries: entries,
+                        time_walk : this.options.time_walk,
                         empty: this.collection.length == 0,
                         underConstruction: this.options.stop_point == 'stop_point:RTF:SP:BAGNE1' 
                     };
