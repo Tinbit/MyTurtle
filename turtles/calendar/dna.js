@@ -113,7 +113,8 @@
                 }
 
                 // Replace \n
-                data[i].description = data[i].description.replace(/\\n/gi,"<br/>");
+                if(data[i].description != null)    
+                    data[i].description = data[i].description.replace(/\\n/gi,"<br/>");
                 // If so chosen, don't display the description
                 if(this.options.nodescription == true)
                     data[i].description = "";
