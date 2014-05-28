@@ -153,8 +153,8 @@
 
             	// set time
             	// A date time from the API comes in the format: YYYYMMDDTHHMMSS
-            	var date = new Date(liveboard[i].stop_date_time.departure_date_time.replace(/^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)$/,'$4:$5:$6 $2/$3/$1'));                
-                liveboard[i].time = date.format("{H}:{M}");
+            	var time = liveboard[i].stop_date_time.departure_date_time.replace(/^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)$/,'$4:$5');
+                liveboard[i].time = time;
 
                 // increment line popularity
                 lines[liveboard[i].route.line.code] = lines[liveboard[i].route.line.code] ? lines[liveboard[i].route.line.code]+1 : 1;
