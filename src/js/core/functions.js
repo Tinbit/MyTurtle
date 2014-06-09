@@ -111,7 +111,7 @@ var detectRomanNumber = new RegExp('^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|I
  * Capitalize every word of a string
  */
 String.prototype.capitalize = function() {
-    return this.replace(/(\w)(\w*)/g, function(g0,g1,g2){
+    return this.replace(/(\[:alpha:])(\[:alpha:]*)/g, function(g0,g1,g2){
         // Filter roman numbers
         if(g2.match(detectRomanNumber)){
             g2 = g2.toUpperCase();
