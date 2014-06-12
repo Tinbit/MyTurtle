@@ -109,17 +109,21 @@ var detectRomanNumber = new RegExp('^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|I
 
 /*
  * Capitalize every word of a string
+ * Deals with unicode.
  */
-String.prototype.capitalize = function() {
-    return this.replace(/(\[:alpha:])(\[:alpha:]*)/g, function(g0,g1,g2){
-        // Filter roman numbers
-        if(g2.match(detectRomanNumber)){
-            g2 = g2.toUpperCase();
-        }else{
-            g2 = g2.toLowerCase();
-        }
 
-        return g1.toUpperCase() + g2;
+var letters = "\\u0061-\\u007A\\u00AA\\u00B5\\u00BA\\u00DF-\\u00F6\\u00F8-\\u00FF\\u0101\\u0103\\u0105\\u0107\\u0109\\u010B\\u010D\\u010F\\u0111\\u0113\\u0115\\u0117\\u0119\\u011B\\u011D\\u011F\\u0121\\u0123\\u0125\\u0127\\u0129\\u012B\\$
+var regex = new RegExp("(\[" + letters + "])(\[" + letters + "]*)", "g");
+
+String.prototype.capitalize = function(){
+    return this.replace(regex, function(s, m1, m2) {
+
+        if(m2.match(detectRomanNumber)){
+                m2 = m2.toUpperCase();
+        }else{
+                m2 = m2.toLowerCase();
+        }
+        return m1.toUpperCase() + m2;
     });
 }
 
