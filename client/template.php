@@ -39,6 +39,7 @@
         <footer>
             <div id='flatturtle-logo' class='logo' style='background-image:url("client/images/logo.jpg")'></div>
             <div id='client-logo' class='logo' style='background-image:url("client/images/logo_placeholder.png")'></div>
+
         </footer>
 
         <script src="client/js/log4javascript.min.js?<?php echo $rand; ?>"></script>
@@ -88,14 +89,16 @@
             log.info("Start loading libraries");
         </script>
 <?php
-    if(ENVIRONMENT != "development"){
+    if(false){
         // Load minified javascript
 ?>
-        <script type="text/javascript" src="client/js/script.min.js?<?php echo $rand; ?>"></script>
+        <script type="text/javascript"
+src="client/js/script.min.js?<?php echo $rand; ?>"></script>
 <?php
     }else{
         // Load unminified javascript files
 ?>
+
         <script src="src/js/libs/leaflet.js?<?php echo $rand; ?>"></script>
         <script src="src/js/libs/wax.leaf.js?<?php echo $rand; ?>"></script>
         <script src="src/js/libs/jquery.min.js?<?php echo $rand; ?>"></script>
@@ -137,7 +140,8 @@
             log.info("Booting!");
             log.debug("Alias: <?php echo $alias; ?>");
 
-            Screen.load('<?php echo $alias; ?>.json?<?php echo $rand; ?>');
+     Screen.load('https://s.flatturtle.com/demodave.json');
+            
         </script>
     </body>
 </html>
